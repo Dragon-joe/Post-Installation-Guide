@@ -358,6 +358,27 @@
             opacity: 0.9;
             display: none;
         }
+
+        .program-info {
+            display: none;
+            background: var(--card);
+            border-left: 4px solid var(--primary);
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .info-icon {
+            color: var(--primary);
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        .info-icon:hover {
+            color: var(--accent);
+        }
     </style>
 </head>
 <body class="light-mode">
@@ -417,128 +438,128 @@
     </div>
 
     <script>
-        // Data from the PDF with download links
+        // Data from the PDF with download links and descriptions
         const data = [
             {
                 title: "Essential Updates & Tools",
                 icon: "fas fa-tools",
                 items: [
-                    { name: "Run Windows Update", type: "essential", link: "https://www.microsoft.com/software-download/windows10" },
-                    { name: "Install GPU Drivers (NVIDIA/AMD/Intel)", type: "essential", link: "https://www.nvidia.com/Download/index.aspx" },
-                    { name: "Install Microsoft Visual C++ Redistributables", type: "essential", link: "https://aka.ms/vs/16/release/vc_redist.x64.exe" },
-                    { name: "Install DirectX Runtime", type: "essential", link: "https://www.microsoft.com/en-us/download/details.aspx?id=35" },
-                    { name: "Install Java (JRE)", type: "essential", link: "https://www.java.com/download/" },
-                    { name: "Install PC Manager", type: "essential", link: "https://aka.ms/PCMgr" },
-                    { name: "Install WinRAR", type: "optional", link: "https://www.win-rar.com/download.html" },
-                    { name: "Install 7-Zip", type: "optional", link: "https://www.7-zip.org/download.html" },
-                    { name: "Install .NET Runtime", type: "optional", link: "https://dotnet.microsoft.com/download/dotnet" },
-                    { name: "Install PowerShell 7 + Windows Terminal", type: "optional", link: "https://github.com/PowerShell/PowerShell/releases" }
+                    { name: "Run Windows Update", type: "essential", link: "https://www.microsoft.com/software-download/windows10", description: "Keep your system secure and up-to-date with the latest patches and features from Microsoft." },
+                    { name: "Install GPU Drivers (NVIDIA/AMD/Intel)", type: "essential", link: "https://www.nvidia.com/Download/index.aspx", description: "Get the latest graphics drivers for optimal gaming and multimedia performance." },
+                    { name: "Install Microsoft Visual C++ Redistributables", type: "essential", link: "https://aka.ms/vs/16/release/vc_redist.x64.exe", description: "Required runtime components for many applications developed with Visual Studio." },
+                    { name: "Install DirectX Runtime", type: "essential", link: "https://www.microsoft.com/en-us/download/details.aspx?id=35", description: "Essential for running games and multimedia applications on Windows." },
+                    { name: "Install Java (JRE)", type: "essential", link: "https://www.java.com/download/", description: "Java Runtime Environment needed to run Java applications and applets." },
+                    { name: "Install PC Manager", type: "essential", link: "https://aka.ms/PCMgr", description: "Microsoft's utility for optimizing and maintaining your PC's performance." },
+                    { name: "Install WinRAR", type: "optional", link: "https://www.win-rar.com/download.html", description: "Powerful archive manager that can unpack various compression formats." },
+                    { name: "Install 7-Zip", type: "optional", link: "https://www.7-zip.org/download.html", description: "Open-source file archiver with high compression ratio support for many formats." },
+                    { name: "Install .NET Runtime", type: "optional", link: "https://dotnet.microsoft.com/download/dotnet", description: "Framework for building and running applications on Windows." },
+                    { name: "Install PowerShell 7 + Windows Terminal", type: "optional", link: "https://github.com/PowerShell/PowerShell/releases", description: "Modern command-line shell and terminal for power users and developers." }
                 ]
             },
             {
                 title: "Recommended Applications",
                 icon: "fas fa-thumbs-up",
                 items: [
-                    { name: "Free Download Manager", type: "essential", link: "https://www.freedownloadmanager.org/download.htm" },
-                    { name: "Microsoft 365 / LibreOffice", type: "optional", link: "https://www.microsoft.com/microsoft-365" },
-                    { name: "Discord / Slack / Teams", type: "optional", link: "https://discord.com/download" },
-                    { name: "CrystalDiskInfo + HWMonitor", type: "essential", link: "https://crystalmark.info/en/software/crystaldiskinfo/" },
-                    { name: "VLC Media Player", type: "optional", link: "https://www.videolan.org/vlc/" },
-                    { name: "Notepad++", type: "optional", link: "https://notepad-plus-plus.org/downloads/" },
-                    { name: "CapCut", type: "optional", link: "https://www.capcut.com/download" },
-                    { name: "DaVinci Resolve", type: "optional", link: "https://www.blackmagicdesign.com/products/davinciresolve" },
-                    { name: "Notion / Obsidian", type: "optional", link: "https://www.notion.so/desktop" },
-                    { name: "Visual Studio Code", type: "dev", link: "https://code.visualstudio.com/download" },
-                    { name: "OBS Studio", type: "optional", link: "https://obsproject.com/download" },
-                    { name: "Adobe Acrobat", type: "optional", link: "https://get.adobe.com/reader/" },
-                    { name: "SumatraPDF", type: "optional", link: "https://www.sumatrapdfreader.org/download-free-pdf-viewer" },
-                    { name: "Microsoft PowerToys", type: "optional", link: "https://github.com/microsoft/PowerToys/releases" },
-                    { name: "Telegram Desktop", type: "optional", link: "https://desktop.telegram.org/" },
-                    { name: "WhatsApp Desktop", type: "optional", link: "https://www.whatsapp.com/download" },
-                    { name: "Steam / Epic Games / GOG Galaxy", type: "optional", link: "https://store.steampowered.com/about/" },
-                    { name: "DeepL Translator", type: "optional", link: "https://www.deepl.com/translator" },
-                    { name: "Brave / Firefox / Chrome", type: "optional", link: "https://www.mozilla.org/firefox/new/" },
-                    { name: "GIMP / Krita", type: "optional", link: "https://www.gimp.org/downloads/" },
-                    { name: "qBittorrent", type: "essential", link: "https://www.qbittorrent.org/download.php" },
-                    { name: "VirtualBox / VMware", type: "optional", link: "https://www.virtualbox.org/wiki/Downloads" },
-                    { name: "Rufus", type: "essential", link: "https://rufus.ie/en/" },
-                    { name: "Ventoy", type: "essential", link: "https://www.ventoy.net/en/download.html" },
-                    { name: "ShareX", type: "optional", link: "https://getsharex.com/" },
-                    { name: "Anki", type: "optional", link: "https://apps.ankiweb.net/" },
-                    { name: "CPU-Z & GPU-Z / Speccy", type: "optional", link: "https://www.cpuid.com/softwares/cpu-z.html" },
-                    { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/" },
-                    { name: "EarTrumpet", type: "optional", link: "https://github.com/File-New-Project/EarTrumpet/releases" },
-                    { name: "Ditto Clipboard Manager", type: "optional", link: "https://ditto-cp.sourceforge.io/" }
+                    { name: "Free Download Manager", type: "essential", link: "https://www.freedownloadmanager.org/download.htm", description: "Accelerates downloads and supports torrents and video downloading." },
+                    { name: "Microsoft 365 / LibreOffice", type: "optional", link: "https://www.microsoft.com/microsoft-365", description: "Productivity suites for documents, spreadsheets, and presentations." },
+                    { name: "Discord / Slack / Teams", type: "optional", link: "https://discord.com/download", description: "Communication platforms for messaging, voice, and video calls." },
+                    { name: "CrystalDiskInfo + HWMonitor", type: "essential", link: "https://crystalmark.info/en/software/crystaldiskinfo/", description: "Tools for monitoring hard drive health and system temperatures." },
+                    { name: "VLC Media Player", type: "optional", link: "https://www.videolan.org/vlc/", description: "Versatile media player that supports almost all audio and video formats." },
+                    { name: "Notepad++", type: "optional", link: "https://notepad-plus-plus.org/downloads/", description: "Advanced text editor with syntax highlighting for programmers." },
+                    { name: "CapCut", type: "optional", link: "https://www.capcut.com/download", description: "User-friendly video editing software with professional features." },
+                    { name: "DaVinci Resolve", type: "optional", link: "https://www.blackmagicdesign.com/products/davinciresolve", description: "Professional video editing, color correction, and audio post-production software." },
+                    { name: "Notion / Obsidian", type: "optional", link: "https://www.notion.so/desktop", description: "Note-taking and knowledge management applications." },
+                    { name: "Visual Studio Code", type: "dev", link: "https://code.visualstudio.com/download", description: "Lightweight but powerful source code editor with extensive extension support." },
+                    { name: "OBS Studio", type: "optional", link: "https://obsproject.com/download", description: "Open-source software for video recording and live streaming." },
+                    { name: "Adobe Acrobat", type: "optional", link: "https://get.adobe.com/reader/", description: "PDF viewer and editor with advanced features for document management." },
+                    { name: "SumatraPDF", type: "optional", link: "https://www.sumatrapdfreader.org/download-free-pdf-viewer", description: "Lightweight PDF, eBook, and document viewer with minimal resource usage." },
+                    { name: "Microsoft PowerToys", type: "optional", link: "https://github.com/microsoft/PowerToys/releases", description: "Utilities for power users to tune and streamline Windows experience." },
+                    { name: "Telegram Desktop", type: "optional", link: "https://desktop.telegram.org/", description: "Fast and secure messaging app with sync across devices." },
+                    { name: "WhatsApp Desktop", type: "optional", link: "https://www.whatsapp.com/download", description: "Desktop version of the popular messaging application." },
+                    { name: "Steam / Epic Games / GOG Galaxy", type: "optional", link: "https://store.steampowered.com/about/", description: "Digital distribution platforms for video games." },
+                    { name: "DeepL Translator", type: "optional", link: "https://www.deepl.com/translator", description: "AI-powered translation tool with high accuracy." },
+                    { name: "Brave / Firefox / Chrome", type: "optional", link: "https://www.mozilla.org/firefox/new/", description: "Web browsers with various privacy and feature focuses." },
+                    { name: "GIMP / Krita", type: "optional", link: "https://www.gimp.org/downloads/", description: "Powerful image editing and digital painting applications." },
+                    { name: "qBittorrent", type: "essential", link: "https://www.qbittorrent.org/download.php", description: "Open-source BitTorrent client with no ads and low resource usage." },
+                    { name: "VirtualBox / VMware", type: "optional", link: "https://www.virtualbox.org/wiki/Downloads", description: "Virtualization software for running multiple operating systems simultaneously." },
+                    { name: "Rufus", type: "essential", link: "https://rufus.ie/en/", description: "Utility for creating bootable USB drives from ISO images." },
+                    { name: "Ventoy", type: "essential", link: "https://www.ventoy.net/en/download.html", description: "Tool to create bootable USB drives that can boot multiple ISO files." },
+                    { name: "ShareX", type: "optional", link: "https://getsharex.com/", description: "Screen capture, file sharing, and productivity tool with many features." },
+                    { name: "Anki", type: "optional", link: "https://apps.ankiweb.net/", description: "Powerful flashcard application that uses spaced repetition for efficient learning." },
+                    { name: "CPU-Z & GPU-Z / Speccy", type: "optional", link: "https://www.cpuid.com/softwares/cpu-z.html", description: "System information tools that provide detailed hardware specifications." },
+                    { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/", description: "Lightning-fast file search utility for Windows that indexes your entire drive." },
+                    { name: "EarTrumpet", type: "optional", link: "https://github.com/File-New-Project/EarTrumpet/releases", description: "Volume control tool for Windows that provides per-application audio control." },
+                    { name: "Ditto Clipboard Manager", type: "optional", link: "https://ditto-cp.sourceforge.io/", description: "Clipboard manager that saves everything you copy for later use." }
                 ]
             },
             {
                 title: "Programming & Development",
                 icon: "fas fa-laptop-code",
                 items: [
-                    { name: "Git + GitHub Desktop", type: "dev", link: "https://git-scm.com/downloads" },
-                    { name: "Node.js + npm", type: "dev", link: "https://nodejs.org/en/download/" },
-                    { name: "Python + pip", type: "dev", link: "https://www.python.org/downloads/" },
-                    { name: "Docker Desktop", type: "dev", link: "https://www.docker.com/products/docker-desktop" },
-                    { name: "WSL2", type: "dev", link: "https://docs.microsoft.com/en-us/windows/wsl/install" },
-                    { name: "PostgreSQL / MySQL / SQLite", type: "dev", link: "https://www.postgresql.org/download/" },
-                    { name: "JetBrains Toolbox", type: "dev", link: "https://www.jetbrains.com/toolbox-app/" },
-                    { name: "Postman / Insomnia", type: "dev", link: "https://www.postman.com/downloads/" }
+                    { name: "Git + GitHub Desktop", type: "dev", link: "https://git-scm.com/downloads", description: "Version control system and GUI client for managing code repositories." },
+                    { name: "Node.js + npm", type: "dev", link: "https://nodejs.org/en/download/", description: "JavaScript runtime and package manager for server-side development." },
+                    { name: "Python + pip", type: "dev", link: "https://www.python.org/downloads/", description: "Popular programming language and its package installer." },
+                    { name: "Docker Desktop", type: "dev", link: "https://www.docker.com/products/docker-desktop", description: "Platform for developing, shipping, and running applications in containers." },
+                    { name: "WSL2", type: "dev", link: "https://docs.microsoft.com/en-us/windows/wsl/install", description: "Windows Subsystem for Linux lets you run a Linux environment on Windows." },
+                    { name: "PostgreSQL / MySQL / SQLite", type: "dev", link: "https://www.postgresql.org/download/", description: "Popular database management systems for application development." },
+                    { name: "JetBrains Toolbox", type: "dev", link: "https://www.jetbrains.com/toolbox-app/", description: "Manages installations of JetBrains IDEs like IntelliJ, PyCharm, and WebStorm." },
+                    { name: "Postman / Insomnia", type: "dev", link: "https://www.postman.com/downloads/", description: "API development and testing tools for building and using web services." }
                 ]
             },
             {
                 title: "Windows Customization",
                 icon: "fas fa-paint-brush",
                 items: [
-                    { name: "Settings → Personalization", type: "essential", link: "ms-settings:personalization" },
-                    { name: "TaskbarToDock", type: "optional", link: "https://github.com/d2dyno/TaskbarToDock" },
-                    { name: "TranslucentTB", type: "optional", link: "https://github.com/TranslucentTB/TranslucentTB" },
-                    { name: "Lively Wallpaper / Wallpaper Engine", type: "optional", link: "https://apps.microsoft.com/store/detail/lively-wallpaper/9NTM2QC6QWS7" },
-                    { name: "Rainmeter", type: "optional", link: "https://www.rainmeter.net/" },
-                    { name: "TidyTabs", type: "optional", link: "https://www.nurgo-software.com/products/tidytabs" }
+                    { name: "Settings → Personalization", type: "essential", link: "ms-settings:personalization", description: "Built-in Windows settings for customizing appearance and themes." },
+                    { name: "TaskbarToDock", type: "optional", link: "https://github.com/d2dyno/TaskbarToDock", description: "Converts the Windows taskbar into a macOS-style dock." },
+                    { name: "TranslucentTB", type: "optional", link: "https://github.com/TranslucentTB/TranslucentTB", description: "Makes the Windows taskbar translucent or completely transparent." },
+                    { name: "Lively Wallpaper / Wallpaper Engine", type: "optional", link: "https://apps.microsoft.com/store/detail/lively-wallpaper/9NTM2QC6QWS7", description: "Applications for setting animated and interactive wallpapers." },
+                    { name: "Rainmeter", type: "optional", link: "https://www.rainmeter.net/", description: "Desktop customization tool that displays customizable skins." },
+                    { name: "TidyTabs", type: "optional", link: "https://www.nurgo-software.com/products/tidytabs", description: "Adds tabbed interface to standard Windows applications." }
                 ]
             },
             {
                 title: "Developer Tweaks (Windows)",
                 icon: "fas fa-cogs",
                 items: [
-                    { name: "O&O ShutUp10++", type: "dev", link: "https://www.oo-software.com/en/shutup10" },
-                    { name: "WPD (Windows Privacy Dashboard)", type: "dev", link: "https://wpd.app/" },
-                    { name: "SimpleWall", type: "dev", link: "https://www.henrypp.org/product/simplewall" },
-                    { name: "TidyOS", type: "dev", link: "https://github.com/builtbybel/TidyOS" },
-                    { name: "CTT (Chris Titus Tweaks) and Revo uninstaller pro", type: "dev", link: "https://github.com/ChrisTitusTech/winutil" },
-                    { name: "Optimizer", type: "dev", link: "https://github.com/hellzerg/optimizer" },
-                    { name: "Windhawk", type: "dev", link: "https://windhawk.net/" },
-                    { name: "Twinkle Tray", type: "dev", link: "https://github.com/xanderfrangos/twinkle-tray" },
-                    { name: "QuickLook", type: "dev", link: "https://github.com/QL-Win/QuickLook" },
-                    { name: "EarTrumpet", type: "dev", link: "https://github.com/File-New-Project/EarTrumpet/releases" },
-                    { name: "Startallback", type: "dev", link: "https://www.startallback.com/" },
-                    { name: "UniGetUI (WingetUI)", type: "dev", link: "https://github.com/martinet101/WingetUI" },
-                    { name: "Scoop", type: "dev", link: "https://scoop.sh/" },
-                    { name: "Chocolatey", type: "dev", link: "https://chocolatey.org/install" }
+                    { name: "O&O ShutUp10++", type: "dev", link: "https://www.oo-software.com/en/shutup10", description: "Privacy tool that lets you control which Windows features can access your data." },
+                    { name: "WPD (Windows Privacy Dashboard)", type: "dev", link: "https://wpd.app/", description: "Tool for adjusting privacy settings and disabling telemetry in Windows." },
+                    { name: "SimpleWall", type: "dev", link: "https://www.henrypp.org/product/simplewall", description: "Simple Windows firewall tool with filtering rules for applications." },
+                    { name: "TidyOS", type: "dev", link: "https://github.com/builtbybel/TidyOS", description: "Tool for debloating and optimizing Windows 10 and 11 installations." },
+                    { name: "CTT (Chris Titus Tweaks) and Revo uninstaller pro", type: "dev", link: "https://github.com/ChrisTitusTech/winutil", description: "Scripts and tools for optimizing Windows performance and removing bloatware." },
+                    { name: "Optimizer", type: "dev", link: "https://github.com/hellzerg/optimizer", description: "Portable tool for optimizing Windows by disabling unnecessary features." },
+                    { name: "Windhawk", type: "dev", link: "https://windhawk.net/", description: "Platform for modding and customizing Windows with user-created mods." },
+                    { name: "Twinkle Tray", type: "dev", link: "https://github.com/xanderfrangos/twinkle-tray", description: "Easily manage the brightness of multiple monitors." },
+                    { name: "QuickLook", type: "dev", link: "https://github.com/QL-Win/QuickLook", description: "Bring macOS Quick Look feature to Windows - press spacebar to preview files." },
+                    { name: "EarTrumpet", type: "dev", link: "https://github.com/File-New-Project/EarTrumpet/releases", description: "Per-application volume control for Windows (also listed in applications)." },
+                    { name: "Startallback", type: "dev", link: "https://www.startallback.com/", description: "Customizes the Windows 11 Start menu and taskbar to be more like Windows 10." },
+                    { name: "UniGetUI (WingetUI)", type: "dev", link: "https://github.com/martinet101/WingetUI", description: "GUI for package managers like Winget and Scoop to easily install applications." },
+                    { name: "Scoop", type: "dev", link: "https://scoop.sh/", description: "Command-line installer for Windows that simplifies software installation." },
+                    { name: "Chocolatey", type: "dev", link: "https://chocolatey.org/install", description: "Package manager for Windows that automates software installations." }
                 ]
             },
             {
                 title: "System Utilities",
                 icon: "fas fa-toolbox",
                 items: [
-                    { name: "Revo Uninstaller Pro", type: "optional", link: "https://www.revouninstaller.com/products/revo-uninstaller-pro/" },
-                    { name: "BleachBit", type: "optional", link: "https://www.bleachbit.org/download" },
-                    { name: "AOMEI Backupper", type: "optional", link: "https://www.aomeitech.com/aomei-backupper.html" },
-                    { name: "Macrium Reflect Free", type: "optional", link: "https://www.macrium.com/reflectfree" },
-                    { name: "Process Hacker", type: "optional", link: "https://processhacker.sourceforge.io/downloads.php" },
-                    { name: "Sysinternals Suite", type: "essential", link: "https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite" },
-                    { name: "HWMonitor", type: "optional", link: "https://www.cpuid.com/softwares/hwmonitor.html" },
-                    { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/" },
-                    { name: "Flow Launcher", type: "optional", link: "https://www.flowlauncher.com/" },
-                    { name: "Listary", type: "optional", link: "https://www.listary.com/download" }
+                    { name: "Revo Uninstaller Pro", type: "optional", link: "https://www.revouninstaller.com/products/revo-uninstaller-pro/", description: "Advanced uninstaller that removes leftover files and registry entries." },
+                    { name: "BleachBit", type: "optional", link: "https://www.bleachbit.org/download", description: "System cleaner that frees disk space and protects privacy by deleting unnecessary files." },
+                    { name: "AOMEI Backupper", type: "optional", link: "https://www.aomeitech.com/aomei-backupper.html", description: "Backup and restore software for system, disk, partition, and file backup." },
+                    { name: "Macrium Reflect Free", type: "optional", link: "https://www.macrium.com/reflectfree", description: "Disk imaging and cloning solution for data backup and recovery." },
+                    { name: "Process Hacker", type: "optional", link: "https://processhacker.sourceforge.io/downloads.php", description: "Advanced task manager with detailed process information and system monitoring." },
+                    { name: "Sysinternals Suite", type: "essential", link: "https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite", description: "Collection of advanced system utilities for Windows from Microsoft." },
+                    { name: "HWMonitor", type: "optional", link: "https://www.cpuid.com/softwares/hwmonitor.html", description: "Hardware monitoring program that reads PC system health sensors." },
+                    { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/", description: "Lightning-fast file search utility (also listed in applications)." },
+                    { name: "Flow Launcher", type: "optional", link: "https://www.flowlauncher.com/", description: "Application launcher for Windows that helps you quickly find and open programs." },
+                    { name: "Listary", type: "optional", link: "https://www.listary.com/download", description: "Search utility that makes finding files and launching applications faster." }
                 ]
             },
             {
                 title: "How to Download Official Windows ISO",
                 icon: "fas fa-download",
                 items: [
-                    { name: "Method 1: From Microsoft Website", type: "essential", link: "https://www.microsoft.com/software-download/windows10" },
-                    { name: "Method 2: From Rufus Directly", type: "essential", link: "https://rufus.ie/en/" }
+                    { name: "Method 1: From Microsoft Website", type: "essential", link: "https://www.microsoft.com/software-download/windows10", description: "Official method to download Windows ISO directly from Microsoft's website." },
+                    { name: "Method 2: From Rufus Directly", type: "essential", link: "https://rufus.ie/en/", description: "Use Rufus tool to download Windows ISO images and create bootable USB drives." }
                 ]
             }
         ];
@@ -577,9 +598,13 @@
                                 <div class="item-content">
                                     <i class="fas fa-${getItemIcon(item.type)}"></i> 
                                     <span class="${optionalClass}">${itemName}</span>
+                                    <i class="fas fa-info-circle info-icon" data-description="${item.description}"></i>
                                 </div>
                                 ${item.link ? `<a href="${item.link}" target="_blank" class="download-btn"><i class="fas fa-download"></i> Download</a>` : ''}
                             </li>
+                            <div class="program-info" id="info-${item.name.replace(/\s+/g, '-')}">
+                                <p>${item.description}</p>
+                            </div>
                         `;
                     });
                     
@@ -587,6 +612,27 @@
                     categoryEl.innerHTML = categoryHTML;
                     container.appendChild(categoryEl);
                 }
+            });
+
+            // Add event listeners to info icons
+            document.querySelectorAll('.info-icon').forEach(icon => {
+                icon.addEventListener('click', (e) => {
+                    const description = e.target.getAttribute('data-description');
+                    const itemName = e.target.closest('li').querySelector('span').textContent;
+                    const infoId = `info-${itemName.replace(/\s+/g, '-')}`;
+                    const infoElement = document.getElementById(infoId);
+                    
+                    // Toggle display of program info
+                    if (infoElement.style.display === 'block') {
+                        infoElement.style.display = 'none';
+                    } else {
+                        // Hide all other info elements
+                        document.querySelectorAll('.program-info').forEach(el => {
+                            el.style.display = 'none';
+                        });
+                        infoElement.style.display = 'block';
+                    }
+                });
             });
         }
 
