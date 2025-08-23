@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-Installation Guide for Operating Systems</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5649c9;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --text: #2d3436;
+            --bg: #f5f6fa;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+            --header-bg: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --filter-btn-bg: #ffffff;
+            --filter-btn-text: #2d3436;
+            --search-bg: #ffffff;
+        }
+
+        .dark-mode {
+            --text: #e2e8f0;
+            --bg: #121826;
+            --card: #1a2234;
+            --border: #2d3748;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+            --header-bg: linear-gradient(135deg, #1a2234, #121826);
+            --filter-btn-bg: #1e293b;
+            --filter-btn-text: #e2e8f0;
+            --search-bg: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: var(--header-bg);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .author {
+            font-style: italic;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .author img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+            justify-content: center;
+            align-items: center;
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 280px;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 22px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            background-color: var(--search-bg);
+            color: var(--text);
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 50px;
+            background-color: var(--filter-btn-bg);
+            color: var(--filter-btn-text);
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle {
+            background: var(--card);
+            border: none;
+            border-radius: 50%;
+            width: 54px;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            color: var(--primary);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 2rem;
+        }
+
+        .category {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            padding: 1.8rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .category h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+        }
+
+        .category ul {
+            list-style-type: none;
+        }
+
+        .category li {
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .category li:last-child {
+            border-bottom: none;
+        }
+
+        .category li .item-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .category li i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .optional {
+            opacity: 0.85;
+        }
+
+        .optional::after {
+            content: " (Optional)";
+            font-size: 0.85em;
+            color: var(--accent);
+        }
+
+        .download-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 1rem;
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .tech-image {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0 3rem;
+        }
+
+        .tech-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        .highlight {
+            background-color: rgba(253, 121, 168, 0.3);
+            border-radius: 4px;
+            padding: 0 4px;
+            font-weight: 500;
+        }
+
+        .mode-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+            opacity: 0.9;
+            display: none;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <header>
+        <div class="header-content">
+            <h1>Post-Installation Guide for Operating Systems</h1>
+            <p class="subtitle">Everything you need after installing Windows to set up your system</p>
+            <p class="author">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='30' fill='%23fd79a8'/%3E%3Ccircle cx='50' cy='100' r='40' fill='%236c5ce7'/%3E%3C/svg%3E" alt="Youssef Mahmoud">
+                Written by: Youssef Mahmoud
+            </p>
+        </div>
+    </header>
+
+    <div class="tech-image">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%236c5ce7' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23fd79a8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%23a29bfe' stroke-width='8' fill='none'/%3E%3C/svg%3E" alt="Tech Background" width="800" height="400" id="tech-image">
+    </div>
+
+    <div class="container">
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search for applications and tools...">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-layer-group"></i> All
+                </button>
+                <button class="filter-btn" data-filter="essential">
+                    <i class="fas fa-star"></i> Essential
+                </button>
+                <button class="filter-btn" data-filter="optional">
+                    <i class="fas fa-circle-notch"></i> Optional
+                </button>
+                <button class="filter-btn" data-filter="dev">
+                    <i class="fas fa-code"></i> For Developers
+                </button>
+            </div>
+            
+            <button class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+        <div class="content" id="content-container">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2023 Post-Installation Guide for Operating Systems - All rights reserved | Written by Youssef Mahmoud</p>
+    </div>
+
+    <div class="mode-indicator" id="mode-indicator">
+        <i class="fas fa-sun"></i> Light Mode
+    </div>
+
+    <script>
+        // Data from the PDF with download links
+        const data = [
+            {
+                title: "Essential Updates & Tools",
+                icon: "fas fa-tools",
+                items: [
+                    { name: "Run Windows Update", type: "essential", link: "https://www.microsoft.com/software-download/windows10" },
+                    { name: "Install GPU Drivers (NVIDIA/AMD/Intel)", type: "essential", link: "https://www.nvidia.com/Download/index.aspx" },
+                    { name: "Install Microsoft Visual C++ Redistributables", type: "essential", link: "https://aka.ms/vs/16/release/vc_redist.x64.exe" },
+                    { name: "Install DirectX Runtime", type: "essential", link: "https://www.microsoft.com/en-us/download/details.aspx?id=35" },
+                    { name: "Install Java (JRE)", type: "essential", link: "https://www.java.com/download/" },
+                    { name: "Install PC Manager", type: "essential", link: "https://aka.ms/PCMgr" },
+                    { name: "Install WinRAR", type: "optional", link: "https://www.win-rar.com/download.html" },
+                    { name: "Install 7-Zip", type: "optional", link: "https://www.7-zip.org/download.html" },
+                    { name: "Install .NET Runtime", type: "optional", link: "https://dotnet.microsoft.com/download/dotnet" },
+                    { name: "Install PowerShell 7 + Windows Terminal", type: "optional", link: "https://github.com/PowerShell/PowerShell/releases" }
+                ]
+            },
+            {
+                title: "Recommended Applications",
+                icon: "fas fa-thumbs-up",
+                items: [
+                    { name: "Free Download Manager", type: "essential", link: "https://www.freedownloadmanager.org/download.htm" },
+                    { name: "Microsoft 365 / LibreOffice", type: "optional", link: "https://www.microsoft.com/microsoft-365" },
+                    { name: "Discord / Slack / Teams", type: "optional", link: "https://discord.com/download" },
+                    { name: "CrystalDiskInfo + HWMonitor", type: "essential", link: "https://crystalmark.info/en/software/crystaldiskinfo/" },
+                    { name: "VLC Media Player", type: "optional", link: "https://www.videolan.org/vlc/" },
+                    { name: "Notepad++", type: "optional", link: "https://notepad-plus-plus.org/downloads/" },
+                    { name: "CapCut", type: "optional", link: "https://www.capcut.com/download" },
+                    { name: "DaVinci Resolve", type: "optional", link: "https://www.blackmagicdesign.com/products/davinciresolve" },
+                    { name: "Notion / Obsidian", type: "optional", link: "https://www.notion.so/desktop" },
+                    { name: "Visual Studio Code", type: "dev", link: "https://code.visualstudio.com/download" },
+                    { name: "OBS Studio", type: "optional", link: "https://obsproject.com/download" },
+                    { name: "Adobe Acrobat", type: "optional", link: "https://get.adobe.com/reader/" },
+                    { name: "SumatraPDF", type: "optional", link: "https://www.sumatrapdfreader.org/download-free-pdf-viewer" },
+                    { name: "Microsoft PowerToys", type: "optional", link: "https://github.com/microsoft/PowerToys/releases" },
+                    { name: "Telegram Desktop", type: "optional", link: "https://desktop.telegram.org/" },
+                    { name: "WhatsApp Desktop", type: "optional", link: "https://www.whatsapp.com/download" },
+                    { name: "Steam / Epic Games / GOG Galaxy", type: "optional", link: "https://store.steampowered.com/about/" },
+                    { name: "DeepL Translator", type: "optional", link: "https://www.deepl.com/translator" },
+                    { name: "Brave / Firefox / Chrome", type: "optional", link: "https://www.mozilla.org/firefox/new/" },
+                    { name: "GIMP / Krita", type: "optional", link: "https://www.gimp.org/downloads/" },
+                    { name: "qBittorrent", type: "essential", link: "https://www.qbittorrent.org/download.php" },
+                    { name: "VirtualBox / VMware", type: "optional", link: "https://www.virtualbox.org/wiki/Downloads" },
+                    { name: "Rufus", type: "essential", link: "https://rufus.ie/en/" },
+                    { name: "Ventoy", type: "essential", link: "https://www.ventoy.net/en/download.html" },
+                    { name: "ShareX", type: "optional", link: "https://getsharex.com/" },
+                    { name: "Anki", type: "optional", link: "https://apps.ankiweb.net/" },
+                    { name: "CPU-Z & GPU-Z / Speccy", type: "optional", link: "https://www.cpuid.com/softwares/cpu-z.html" },
+                    { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/" },
+                    { name: "EarTrumpet", type: "optional", link: "https://github.com/File-New-Project/EarTrumpet/releases" },
+                    { name: "Ditto Clipboard Manager", type: "optional", link: "https://ditto-cp.sourceforge.io/" }
+                ]
+            },
+            {
+                title: "Programming & Development",
+                icon: "fas fa-laptop-code",
+                items: [
+                    { name: "Git + GitHub Desktop", type: "dev", link: "https://git-scm.com/downloads" },
+                    { name: "Node.js + npm", type: "dev", link: "https://nodejs.org/en/download/" },
+                    { name: "Python + pip", type: "dev", link: "https://www.python.org/downloads/" },
+                    { name: "Docker Desktop", type: "dev", link: "https://www.docker.com/products/docker-desktop" },
+                    { name: "WSL2", type: "dev", link: "https://docs.microsoft.com/en-us/windows/wsl/install" },
+                    { name: "PostgreSQL / MySQL / SQLite", type: "dev", link: "https://www.postgresql.org/download/" },
+                    { name: "JetBrains Toolbox", type: "dev", link: "https://www.jetbrains.com/toolbox-app/" },
+                    { name: "Postman / Insomnia", type: "dev", link: "https://www.postman.com/downloads/" }
+                ]
+            },
+            {
+                title: "Windows Customization",
+                icon: "fas fa-paint-brush",
+                items: [
+                    { name: "Settings → Personalization", type: "essential", link: "ms-settings:personalization" },
+                    { name: "TaskbarToDock", type: "optional", link: "https://github.com/d2dyno/TaskbarToDock" },
+                    { name: "TranslucentTB", type: "optional", link: "https://github.com/TranslucentTB/TranslucentTB" },
+                    { name: "Lively Wallpaper / Wallpaper Engine", type: "optional", link: "https://apps.microsoft.com/store/detail/lively-wallpaper/9NTM2QC6QWS7" },
+                    { name: "Rainmeter", type: "optional", link: "https://www.rainmeter.net/" },
+                    { name: "TidyTabs", type: "optional", link: "https://www.nurgo-software.com/products/tidytabs" }
+                ]
+            },
+            {
+                title: "Developer Tweaks (Windows)",
+                icon: "fas fa-cogs",
+                items: [
+                    { name: "O&O ShutUp10++", type: "dev", link: "https://www.oo-software.com/en/shutup10" },
+                    { name: "WPD (Windows Privacy Dashboard)", type: "dev", link: "https://wpd.app/" },
+                    { name: "SimpleWall", type: "dev", link: "https://www.henrypp.org/product/simplewall" },
+                    { name: "TidyOS", type: "dev", link: "https://github.com/builtbybel/TidyOS" },
+                    { name: "CTT (Chris Titus Tweaks) and Revo uninstaller pro", type: "dev", link: "https://github.com/ChrisTitusTech/winutil" },
+                    { name: "Optimizer", type: "dev", link: "https://github.com/hellzerg/optimizer" },
+                    { name: "Windhawk", type: "dev", link: "https://windhawk.net/" },
+                    { name: "Twinkle Tray", type: "dev", link: "https://github.com/xanderfrangos/twinkle-tray" },
+                    { name: "QuickLook", type: "dev", link: "https://github.com/QL-Win/QuickLook" },
+                    { name: "EarTrumpet", type: "dev", link: "https://github.com/File-New-Project/EarTrumpet/releases" },
+                    { name: "Startallback", type: "dev", link: "https://www.startallback.com/" },
+                    { name: "UniGetUI (WingetUI)", type: "dev", link: "https://github.com/martinet101/WingetUI" },
+                    { name: "Scoop", type: "dev", link: "https://scoop.sh/" },
+                    { name: "Chocolatey", type: "dev", link: "https://chocolatey.org/install" }
+                ]
+            },
+            {
+                title: "System Utilities",
+                icon: "fas fa-toolbox",
+                items: [
+                    { name: "Revo Uninstaller Pro", type: "optional", link: "https://www.revouninstaller.com/products/revo-uninstaller-pro/" },
+                    { name: "BleachBit", type: "optional", link: "https://www.bleachbit.org/download" },
+                    { name: "AOMEI Backupper", type: "optional", link: "https://www.aomeitech.com/aomei-backupper.html" },
+                    { name: "Macrium Reflect Free", type: "optional", link: "https://www.macrium.com/reflectfree" },
+                    { name: "Process Hacker", type: "optional", link: "https://processhacker.sourceforge.io/downloads.php" },
+                    { name: "Sysinternals Suite", type: "essential", link: "https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite" },
+                    { name: "HWMonitor", type: "optional", link: "https://www.cpuid.com/softwares/hwmonitor.html" },
+                    { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/" },
+                    { name: "Flow Launcher", type: "optional", link: "https://www.flowlauncher.com/" },
+                    { name: "Listary", type: "optional", link: "https://www.listary.com/download" }
+                ]
+            },
+            {
+                title: "How to Download Official Windows ISO",
+                icon: "fas fa-download",
+                items: [
+                    { name: "Method 1: From Microsoft Website", type: "essential", link: "https://www.microsoft.com/software-download/windows10" },
+                    { name: "Method 2: From Rufus Directly", type: "essential", link: "https://rufus.ie/en/" }
+                ]
+            }
+        ];
+
+        // Render content to the page
+        function renderContent(filter = 'all', searchTerm = '') {
+            const container = document.getElementById('content-container');
+            container.innerHTML = '';
+            
+            data.forEach(category => {
+                const filteredItems = category.items.filter(item => {
+                    const matchesFilter = filter === 'all' || item.type === filter;
+                    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+                    return matchesFilter && matchesSearch;
+                });
+                
+                if (filteredItems.length > 0) {
+                    const categoryEl = document.createElement('div');
+                    categoryEl.className = 'category';
+                    
+                    let categoryHTML = `
+                        <h2><i class="${category.icon}"></i> ${category.title}</h2>
+                        <ul>
+                    `;
+                    
+                    filteredItems.forEach(item => {
+                        let itemName = item.name;
+                        if (searchTerm) {
+                            const regex = new RegExp(`(${searchTerm})`, 'gi');
+                            itemName = itemName.replace(regex, '<span class="highlight">$1</span>');
+                        }
+                        
+                        const optionalClass = item.type === 'optional' ? 'optional' : '';
+                        categoryHTML += `
+                            <li>
+                                <div class="item-content">
+                                    <i class="fas fa-${getItemIcon(item.type)}"></i> 
+                                    <span class="${optionalClass}">${itemName}</span>
+                                </div>
+                                ${item.link ? `<a href="${item.link}" target="_blank" class="download-btn"><i class="fas fa-download"></i> Download</a>` : ''}
+                            </li>
+                        `;
+                    });
+                    
+                    categoryHTML += '</ul>';
+                    categoryEl.innerHTML = categoryHTML;
+                    container.appendChild(categoryEl);
+                }
+            });
+        }
+
+        // Get appropriate icon based on type
+        function getItemIcon(type) {
+            switch(type) {
+                case 'essential': return 'star';
+                case 'optional': return 'circle-notch';
+                case 'dev': return 'code';
+                default: return 'check';
+            }
+        }
+
+        // Setup dark mode toggle
+        function setupDarkMode() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            const modeIndicator = document.getElementById('mode-indicator');
+            const modeIcon = modeIndicator.querySelector('i');
+            const techImage = document.getElementById('tech-image');
+            
+            // Check if user has a dark mode preference saved
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Set initial theme
+            if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%236c5ce7' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23fd79a8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%23a29bfe' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+            } else {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23121826' width='800' height='400'/%3E%3Cg fill='%236c5ce7' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23fd79a8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%23a29bfe' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                if (document.body.classList.contains('dark-mode')) {
+                    document.body.classList.remove('dark-mode');
+                    document.body.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light');
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    modeIcon.classList.remove('fa-moon');
+                    modeIcon.classList.add('fa-sun');
+                    modeIndicator.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                    techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%236c5ce7' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23fd79a8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%23a29bfe' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+                } else {
+                    document.body.classList.remove('light-mode');
+                    document.body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    modeIcon.classList.remove('fa-sun');
+                    modeIcon.classList.add('fa-moon');
+                    modeIndicator.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                    techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23121826' width='800' height='400'/%3E%3Cg fill='%236c5ce7' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23fd79a8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%23a29bfe' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+                }
+                
+                // Show mode indicator for 3 seconds
+                modeIndicator.style.display = 'flex';
+                setTimeout(() => {
+                    modeIndicator.style.display = 'none';
+                }, 3000);
+            });
+        }
+
+        // Setup filtering and search
+        function setupFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const searchInput = document.getElementById('search-input');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    renderContent(filter, searchInput.value);
+                });
+            });
+            
+            searchInput.addEventListener('input', () => {
+                const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+                renderContent(activeFilter, searchInput.value);
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderContent();
+            setupDarkMode();
+            setupFilters();
+            
+            // Hide mode indicator after 3 seconds of loading
+            setTimeout(() => {
+                document.getElementById('mode-indicator').style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
