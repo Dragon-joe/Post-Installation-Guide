@@ -484,7 +484,7 @@
                     { name: "VirtualBox / VMware", type: "optional", link: "https://www.virtualbox.org/wiki/Downloads", description: "Virtualization software for running multiple operating systems simultaneously." },
                     { name: "Rufus", type: "essential", link: "https://rufus.ie/en/", description: "Utility for creating bootable USB drives from ISO images." },
                     { name: "Ventoy", type: "essential", link: "https://www.ventoy.net/en/download.html", description: "Tool to create bootable USB drives that can boot multiple ISO files." },
-                    { name: "ShareX", type: "optional", link: "https://getsharex.com/", description: "Screen capture, file sharing, and productivity tool with many features." },
+                    { name: "ShareX", type: "optional", link: "https://getsharex.com/", description: "Screen capture, file sharing and productivity tool with many features." },
                     { name: "Anki", type: "optional", link: "https://apps.ankiweb.net/", description: "Powerful flashcard application that uses spaced repetition for efficient learning." },
                     { name: "CPU-Z & GPU-Z / Speccy", type: "optional", link: "https://www.cpuid.com/softwares/cpu-z.html", description: "System information tools that provide detailed hardware specifications." },
                     { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/", description: "Lightning-fast file search utility for Windows that indexes your entire drive." },
@@ -531,7 +531,7 @@
                     { name: "Windhawk", type: "dev", link: "https://windhawk.net/", description: "Platform for modding and customizing Windows with user-created mods." },
                     { name: "Twinkle Tray", type: "dev", link: "https://github.com/xanderfrangos/twinkle-tray", description: "Easily manage the brightness of multiple monitors." },
                     { name: "QuickLook", type: "dev", link: "https://github.com/QL-Win/QuickLook", description: "Bring macOS Quick Look feature to Windows - press spacebar to preview files." },
-                    { name: "EarTrumpet", type: "dev", link: "https://github.com/File-New-Project/EarTrumpet/releases", description: "Per-application volume control for Windows (also listed in applications)." },
+                    { name: "EarTrumpet", type: "dev", link: "https://github.com/File-New-Project/EarTrumpet/releases", description: "Per-application volume control for Windows." },
                     { name: "Startallback", type: "dev", link: "https://www.startallback.com/", description: "Customizes the Windows 11 Start menu and taskbar to be more like Windows 10." },
                     { name: "UniGetUI (WingetUI)", type: "dev", link: "https://github.com/martinet101/WingetUI", description: "GUI for package managers like Winget and Scoop to easily install applications." },
                     { name: "Scoop", type: "dev", link: "https://scoop.sh/", description: "Command-line installer for Windows that simplifies software installation." },
@@ -549,7 +549,6 @@
                     { name: "Process Hacker", type: "optional", link: "https://processhacker.sourceforge.io/downloads.php", description: "Advanced task manager with detailed process information and system monitoring." },
                     { name: "Sysinternals Suite", type: "essential", link: "https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite", description: "Collection of advanced system utilities for Windows from Microsoft." },
                     { name: "HWMonitor", type: "optional", link: "https://www.cpuid.com/softwares/hwmonitor.html", description: "Hardware monitoring program that reads PC system health sensors." },
-                    { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/", description: "Lightning-fast file search utility (also listed in applications)." },
                     { name: "Flow Launcher", type: "optional", link: "https://www.flowlauncher.com/", description: "Application launcher for Windows that helps you quickly find and open programs." },
                     { name: "Listary", type: "optional", link: "https://www.listary.com/download", description: "Search utility that makes finding files and launching applications faster." }
                 ]
@@ -593,16 +592,18 @@
                         }
                         
                         const optionalClass = item.type === 'optional' ? 'optional' : '';
+                        const itemId = item.name.replace(/\s+/g, '-').toLowerCase();
+                        
                         categoryHTML += `
                             <li>
                                 <div class="item-content">
                                     <i class="fas fa-${getItemIcon(item.type)}"></i> 
                                     <span class="${optionalClass}">${itemName}</span>
-                                    <i class="fas fa-info-circle info-icon" data-description="${item.description}"></i>
+                                    <i class="fas fa-info-circle info-icon" onclick="toggleInfo('${itemId}')"></i>
                                 </div>
                                 ${item.link ? `<a href="${item.link}" target="_blank" class="download-btn"><i class="fas fa-download"></i> Download</a>` : ''}
                             </li>
-                            <div class="program-info" id="info-${item.name.replace(/\s+/g, '-')}">
+                            <div class="program-info" id="${itemId}">
                                 <p>${item.description}</p>
                             </div>
                         `;
@@ -613,27 +614,20 @@
                     container.appendChild(categoryEl);
                 }
             });
+        }
 
-            // Add event listeners to info icons
-            document.querySelectorAll('.info-icon').forEach(icon => {
-                icon.addEventListener('click', (e) => {
-                    const description = e.target.getAttribute('data-description');
-                    const itemName = e.target.closest('li').querySelector('span').textContent;
-                    const infoId = `info-${itemName.replace(/\s+/g, '-')}`;
-                    const infoElement = document.getElementById(infoId);
-                    
-                    // Toggle display of program info
-                    if (infoElement.style.display === 'block') {
-                        infoElement.style.display = 'none';
-                    } else {
-                        // Hide all other info elements
-                        document.querySelectorAll('.program-info').forEach(el => {
-                            el.style.display = 'none';
-                        });
-                        infoElement.style.display = 'block';
-                    }
+        // Toggle program info display
+        function toggleInfo(itemId) {
+            const infoElement = document.getElementById(itemId);
+            if (infoElement.style.display === 'block') {
+                infoElement.style.display = 'none';
+            } else {
+                // Hide all other info elements
+                document.querySelectorAll('.program-info').forEach(el => {
+                    el.style.display = 'none';
                 });
-            });
+                infoElement.style.display = 'block';
+            }
         }
 
         // Get appropriate icon based on type
