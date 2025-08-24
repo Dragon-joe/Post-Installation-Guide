@@ -379,6 +379,29 @@
         .info-icon:hover {
             color: var(--accent);
         }
+
+        /* Navigation bar */
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.nav-link {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-link:hover {
+  color: var(--primary-dark);
+}
     </style>
 </head>
 <body class="light-mode">
@@ -390,6 +413,11 @@
                 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='30' fill='%23B2B0E8'/%3E%3Ccircle cx='50' cy='100' r='40' fill='%231A2A80'/%3E%3C/svg%3E" alt="Youssef Mahmoud">
                 Written by: Youssef Mahmoud
             </p>
+            <nav class="nav-bar">
+  <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+  <a href="videos.html" class="nav-link"><i class="fas fa-video"></i> Videos</a>
+</nav>
+
         </div>
     </header>
 
