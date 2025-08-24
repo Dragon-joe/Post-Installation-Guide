@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tutorial Videos - Post-Installation Guide</title>
+  <title>Speed Up Windows - Tutorial Videos</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -160,12 +160,22 @@
     .theme-toggle:hover {
       background: var(--primary-dark);
     }
+
+    /* footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      opacity: 0.8;
+      border-top: 1px solid var(--border);
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1><i class="fas fa-video"></i> Tutorial Videos</h1>
-    <p class="subtitle">Step-by-step walkthroughs for your Windows setup</p>
+    <h1><i class="fas fa-bolt"></i> Speed Up Windows</h1>
+    <p class="subtitle">Boost performance and make Windows faster</p>
   </header>
 
   <nav class="nav-bar">
@@ -174,38 +184,48 @@
   </nav>
 
   <div class="video-controls">
-    <input type="text" id="video-search" placeholder="Search videos...">
+    <input type="text" id="video-search" placeholder="Search speed-up tips...">
     <button class="filter-btn active" data-category="all">All</button>
-    <button class="filter-btn" data-category="installation">⚙️ Installation</button>
-    <button class="filter-btn" data-category="drivers">🎮 Drivers</button>
-    <button class="filter-btn" data-category="customization">🎨 Customization</button>
+    <button class="filter-btn" data-category="performance">⚡ Performance Boost</button>
+    <button class="filter-btn" data-category="cleanup">🧹 Cleanup & Optimization</button>
+    <button class="filter-btn" data-category="startup">🚀 Startup & Boot Speed</button>
+    <button class="filter-btn" data-category="gaming">🎮 Gaming Optimization</button>
   </div>
 
   <div class="content" id="video-container"></div>
 
   <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
 
+  <footer>
+    Made with ❤️ by <strong>اYoussef Mahmoud</strong>
+  </footer>
+
   <script>
     const videos = [
       {
-        title: "How to Install Windows Updates",
-        category: "installation",
+        title: "Speed Up Windows 11 Performance",
+        category: "performance",
         embed: "https://www.youtube.com/embed/VIDEO_ID_1"
       },
       {
-        title: "Installing GPU Drivers",
-        category: "drivers",
+        title: "Clean Junk Files & Optimize PC",
+        category: "cleanup",
         embed: "https://www.youtube.com/embed/VIDEO_ID_2"
       },
       {
-        title: "Customizing Windows 11 Taskbar",
-        category: "customization",
+        title: "Make Windows Boot Faster",
+        category: "startup",
         embed: "https://www.youtube.com/embed/VIDEO_ID_3"
       },
       {
-        title: "Fixing Audio Issues",
-        category: "drivers",
+        title: "Optimize Windows for Gaming",
+        category: "gaming",
         embed: "https://www.youtube.com/embed/VIDEO_ID_4"
+      },
+      {
+        title: "Disable Background Apps for More Speed",
+        category: "performance",
+        embed: "https://www.youtube.com/embed/VIDEO_ID_5"
       }
     ];
 
