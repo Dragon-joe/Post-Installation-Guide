@@ -6,19 +6,130 @@
   <title>Tutorial Videos - Post-Installation Guide</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <style>
-    /* نفس ستايل الكروت من موقعك */
+    :root {
+      --bg: #f4f6fa;
+      --card: #fff;
+      --text: #222;
+      --primary: #3b82f6;
+      --primary-dark: #1e40af;
+      --border: #ddd;
+      --radius: 16px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    body.dark {
+      --bg: #181a1f;
+      --card: #24262c;
+      --text: #e4e6eb;
+      --primary: #60a5fa;
+      --primary-dark: #2563eb;
+      --border: #333;
+      --shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      font-weight: 300;
+    }
+
+    /* nav */
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .nav-link {
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-link:hover {
+      color: var(--primary-dark);
+    }
+
+    /* controls */
+    .video-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem auto;
+      max-width: 1000px;
+    }
+    .video-controls input {
+      padding: 0.7rem 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      flex: 1;
+      max-width: 280px;
+      font-size: 0.95rem;
+    }
+    .filter-btn {
+      padding: 0.7rem 1rem;
+      border: none;
+      border-radius: var(--radius);
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* grid videos */
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
+    }
+
     .video-card {
       background: var(--card);
       padding: 1rem;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      margin-bottom: 2rem;
+      transition: transform 0.2s;
+    }
+    .video-card:hover {
+      transform: translateY(-4px);
     }
     .video-card h2 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
       color: var(--primary);
       display: flex;
       align-items: center;
@@ -29,42 +140,32 @@
       overflow: hidden;
       box-shadow: var(--shadow);
     }
-    /* شريط البحث والفلتر */
-    .video-controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-    .video-controls input {
-      padding: 0.6rem 1rem;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      flex: 1;
-      max-width: 300px;
-    }
-    .filter-btn {
-      padding: 0.6rem 1rem;
-      border: none;
-      border-radius: var(--radius);
+
+    /* theme toggle */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
       background: var(--primary);
       color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
       cursor: pointer;
-      font-weight: 600;
+      box-shadow: var(--shadow);
+      transition: background 0.3s;
     }
-    .filter-btn.active,
-    .filter-btn:hover {
+    .theme-toggle:hover {
       background: var(--primary-dark);
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-content">
-      <h1><i class="fas fa-video"></i> Tutorial Videos</h1>
-      <p class="subtitle">Step-by-step walkthroughs for your Windows setup</p>
-    </div>
+    <h1><i class="fas fa-video"></i> Tutorial Videos</h1>
+    <p class="subtitle">Step-by-step walkthroughs for your Windows setup</p>
   </header>
 
   <nav class="nav-bar">
@@ -72,16 +173,17 @@
     <a href="videos.html" class="nav-link"><i class="fas fa-video"></i> Videos</a>
   </nav>
 
-  <div class="container">
-    <div class="video-controls">
-      <input type="text" id="video-search" placeholder="Search videos...">
-      <button class="filter-btn active" data-category="all">All</button>
-      <button class="filter-btn" data-category="installation">Installation</button>
-      <button class="filter-btn" data-category="drivers">Drivers</button>
-      <button class="filter-btn" data-category="customization">Customization</button>
-    </div>
-    <div class="content" id="video-container"></div>
+  <div class="video-controls">
+    <input type="text" id="video-search" placeholder="Search videos...">
+    <button class="filter-btn active" data-category="all">All</button>
+    <button class="filter-btn" data-category="installation">⚙️ Installation</button>
+    <button class="filter-btn" data-category="drivers">🎮 Drivers</button>
+    <button class="filter-btn" data-category="customization">🎨 Customization</button>
   </div>
+
+  <div class="content" id="video-container"></div>
+
+  <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
 
   <script>
     const videos = [
@@ -99,6 +201,11 @@
         title: "Customizing Windows 11 Taskbar",
         category: "customization",
         embed: "https://www.youtube.com/embed/VIDEO_ID_3"
+      },
+      {
+        title: "Fixing Audio Issues",
+        category: "drivers",
+        embed: "https://www.youtube.com/embed/VIDEO_ID_4"
       }
     ];
 
@@ -117,14 +224,13 @@
           card.innerHTML = `
             <h2><i class="fas fa-play-circle"></i> ${video.title}</h2>
             <div class="video-frame">
-              <iframe width="100%" height="315" src="${video.embed}" frameborder="0" allowfullscreen></iframe>
+              <iframe width="100%" height="200" src="${video.embed}" frameborder="0" allowfullscreen></iframe>
             </div>
           `;
           container.appendChild(card);
         });
     }
 
-    // فلترة بالضغط على الأزرار
     filterBtns.forEach(btn => {
       btn.addEventListener("click", () => {
         filterBtns.forEach(b => b.classList.remove("active"));
@@ -133,13 +239,25 @@
       });
     });
 
-    // البحث
     searchInput.addEventListener("input", () => {
       const activeFilter = document.querySelector(".filter-btn.active").dataset.category;
       renderVideos(activeFilter, searchInput.value);
     });
 
     document.addEventListener("DOMContentLoaded", () => renderVideos());
+
+    // theme toggle
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    if(localStorage.getItem("theme") === "dark") body.classList.add("dark");
+
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
+      themeToggle.innerHTML = body.classList.contains("dark") ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
   </script>
 </body>
 </html>
+
