@@ -1,3 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial Videos - Post-Installation Guide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1><i class="fas fa-video"></i> Tutorial Videos</h1>
+      <p class="subtitle">Step-by-step walkthroughs for your Windows setup</p>
+    </div>
+  </header>
+
+  <nav class="nav-bar">
+    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+    <a href="videos.html" class="nav-link"><i class="fas fa-video"></i> Videos</a>
+  </nav>
+
+  <div class="container">
+    <div class="content" id="video-container"></div>
+  </div>
+
+  <script>
+    const videos = [
+      {
+        title: "How to Install Windows Updates",
+        category: "installation",
+        embed: "https://www.youtube.com/embed/VIDEO_ID_1"
+      },
+      {
+        title: "Installing GPU Drivers",
+        category: "drivers",
+        embed: "https://www.youtube.com/embed/VIDEO_ID_2"
+      },
+      {
+        title: "Customizing Windows 11 Taskbar",
+        category: "customization",
+        embed: "https://www.youtube.com/embed/VIDEO_ID_3"
+      }
+    ];
+
+    function renderVideos() {
+      const container = document.getElementById("video-container");
+      container.innerHTML = "";
+
+      videos.forEach(video => {
+        const videoCard = document.createElement("div");
+        videoCard.className = "category";
+        videoCard.innerHTML = `
+          <h2><i class="fas fa-play-circle"></i> ${video.title}</h2>
+          <div class="video-frame">
+            <iframe width="100%" height="315" src="${video.embed}" frameborder="0" allowfullscreen></iframe>
+          </div>
+        `;
+        container.appendChild(videoCard);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", renderVideos);
+  </script>
+</body>
+</html>
+
+
+
 const videos = [
   {
     title: "How to Install Windows Updates",
@@ -15,3 +85,4 @@ const videos = [
     embed: "https://www.youtube.com/embed/VIDEO_ID_3"
   }
 ];
+
