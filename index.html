@@ -8,10 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6c5ce7;
-            --primary-dark: #5649c9;
-            --secondary: #a29bfe;
-            --accent: #fd79a8;
+            --primary: #1A2A80;
+            --primary-dark: #3B38A0;
+            --secondary: #7A85C1;
+            --accent: #B2B0E8;
             --text: #2d3436;
             --bg: #f5f6fa;
             --card: #ffffff;
@@ -31,7 +31,7 @@
             --card: #1a2234;
             --border: #2d3748;
             --shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-            --header-bg: linear-gradient(135deg, #1a2234, #121826);
+            --header-bg: linear-gradient(135deg, var(--primary-dark), var(--primary));
             --filter-btn-bg: #1e293b;
             --filter-btn-text: #e2e8f0;
             --search-bg: #1e293b;
@@ -335,7 +335,7 @@
         }
 
         .highlight {
-            background-color: rgba(253, 121, 168, 0.3);
+            background-color: rgba(178, 176, 232, 0.3);
             border-radius: 4px;
             padding: 0 4px;
             font-weight: 500;
@@ -387,14 +387,14 @@
             <h1>Post-Installation Guide for Operating Systems</h1>
             <p class="subtitle">Everything you need after installing Windows to set up your system</p>
             <p class="author">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='30' fill='%23fd79a8'/%3E%3Ccircle cx='50' cy='100' r='40' fill='%236c5ce7'/%3E%3C/svg%3E" alt="Youssef Mahmoud">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='30' fill='%23B2B0E8'/%3E%3Ccircle cx='50' cy='100' r='40' fill='%231A2A80'/%3E%3C/svg%3E" alt="Youssef Mahmoud">
                 Written by: Youssef Mahmoud
             </p>
         </div>
     </header>
 
     <div class="tech-image">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%236c5ce7' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23fd79a8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%23a29bfe' stroke-width='8' fill='none'/%3E%3C/svg%3E" alt="Tech Background" width="800" height="400" id="tech-image">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E" alt="Tech Background" width="800" height="400" id="tech-image">
     </div>
 
     <div class="container">
@@ -445,11 +445,11 @@
                 icon: "fas fa-tools",
                 items: [
                     { name: "Run Windows Update", type: "essential", link: "ms-settings:windowsupdate", description: "Keep your system secure and up-to-date with the latest patches and features from Microsoft." },
-                    { name: "Install GPU Drivers (NVIDIA/AMD/Intel)", type: "essential",  description: "Get the latest graphics drivers for optimal gaming and multimedia performance." },
-                    { name: "Install Microsoft Visual C++ Redistributables", type: "essential", link: "https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170", description: "Required runtime components for many applications developed with Visual Studio." },
+                    { name: "Install GPU Drivers (NVIDIA/AMD/Intel)", type: "essential", description: "Get the latest graphics drivers for optimal gaming and multimedia performance." },
+                    { name: "Install Microsoft Visual C++ Redistributables", type: "essential", link: "https://aka.ms/vs/16/release/vc_redist.x64.exe", description: "Required runtime components for many applications developed with Visual Studio." },
                     { name: "Install DirectX Runtime", type: "essential", link: "https://www.microsoft.com/en-us/download/details.aspx?id=35", description: "Essential for running games and multimedia applications on Windows." },
                     { name: "Install Java (JRE)", type: "essential", link: "https://www.java.com/download/", description: "Java Runtime Environment needed to run Java applications and applets." },
-                    { name: "Install PC Manager", type: "essential", link: "https://pcmanager.microsoft.com/en-us", description: "Microsoft's utility for optimizing and maintaining your PC's performance." },
+                    { name: "Install PC Manager", type: "essential", link: "https://aka.ms/PCMgr", description: "Microsoft's utility for optimizing and maintaining your PC's performance." },
                     { name: "Install WinRAR", type: "optional", link: "https://www.win-rar.com/download.html", description: "Powerful archive manager that can unpack various compression formats." },
                     { name: "Install 7-Zip", type: "optional", link: "https://www.7-zip.org/download.html", description: "Open-source file archiver with high compression ratio support for many formats." },
                     { name: "Install .NET Runtime", type: "optional", link: "https://dotnet.microsoft.com/download/dotnet", description: "Framework for building and running applications on Windows." },
@@ -484,7 +484,6 @@
                     { name: "VirtualBox / VMware", type: "optional", link: "https://www.virtualbox.org/wiki/Downloads", description: "Virtualization software for running multiple operating systems simultaneously." },
                     { name: "Rufus", type: "essential", link: "https://rufus.ie/en/", description: "Utility for creating bootable USB drives from ISO images." },
                     { name: "Ventoy", type: "essential", link: "https://www.ventoy.net/en/download.html", description: "Tool to create bootable USB drives that can boot multiple ISO files." },
-                    { name: "Ocam", type: "optional", link: "https://ohsoft.net/eng/ocam/", description: "A lightweight screen recorder and screenshot capture tool." },
                     { name: "ShareX", type: "optional", link: "https://getsharex.com/", description: "Screen capture, file sharing and productivity tool with many features." },
                     { name: "Anki", type: "optional", link: "https://apps.ankiweb.net/", description: "Powerful flashcard application that uses spaced repetition for efficient learning." },
                     { name: "CPU-Z & GPU-Z / Speccy", type: "optional", link: "https://www.cpuid.com/softwares/cpu-z.html", description: "System information tools that provide detailed hardware specifications." },
@@ -512,7 +511,7 @@
                 icon: "fas fa-paint-brush",
                 items: [
                     { name: "Settings → Personalization", type: "essential", link: "ms-settings:personalization", description: "Built-in Windows settings for customizing appearance and themes." },
-                    { name: "TaskbarToDock", type: "optional", link: "https://taskbartodock.en.softonic.com/", description: "Converts the Windows taskbar into a macOS-style dock." },
+                    { name: "TaskbarToDock", type: "optional", link: "https://github.com/d2dyno/TaskbarToDock", description: "Converts the Windows taskbar into a macOS-style dock." },
                     { name: "TranslucentTB", type: "optional", link: "https://github.com/TranslucentTB/TranslucentTB", description: "Makes the Windows taskbar translucent or completely transparent." },
                     { name: "Lively Wallpaper / Wallpaper Engine", type: "optional", link: "https://apps.microsoft.com/store/detail/lively-wallpaper/9NTM2QC6QWS7", description: "Applications for setting animated and interactive wallpapers." },
                     { name: "Rainmeter", type: "optional", link: "https://www.rainmeter.net/", description: "Desktop customization tool that displays customizable skins." },
@@ -537,7 +536,6 @@
                     { name: "UniGetUI (WingetUI)", type: "dev", link: "https://github.com/martinet101/WingetUI", description: "GUI for package managers like Winget and Scoop to easily install applications." },
                     { name: "Scoop", type: "dev", link: "https://scoop.sh/", description: "Command-line installer for Windows that simplifies software installation." },
                     { name: "Chocolatey", type: "dev", link: "https://chocolatey.org/install", description: "Package manager for Windows that automates software installations." }
-                    { name: "Sparkle", type: "dev", link: "https://github.com/Parcoil/Sparkle/releases/tag/2.6.0", description: "An open-source software update framework for applications, enabling seamless self-updating capabilities. A PowerShell script has been added to download it." }
                 ]
             },
             {
@@ -660,13 +658,13 @@
                 document.body.classList.add('light-mode');
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
-                techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%236c5ce7' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23fd79a8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%23a29bfe' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+                techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E";
             } else {
                 document.body.classList.remove('light-mode');
                 document.body.classList.add('dark-mode');
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
-                techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23121826' width='800' height='400'/%3E%3Cg fill='%236c5ce7' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23fd79a8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%23a29bfe' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+                techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23121826' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E";
             }
             
             themeToggle.addEventListener('click', () => {
@@ -679,7 +677,7 @@
                     modeIcon.classList.remove('fa-moon');
                     modeIcon.classList.add('fa-sun');
                     modeIndicator.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-                    techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%236c5ce7' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23fd79a8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%23a29bfe' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+                    techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E";
                 } else {
                     document.body.classList.remove('light-mode');
                     document.body.classList.add('dark-mode');
@@ -689,7 +687,7 @@
                     modeIcon.classList.remove('fa-sun');
                     modeIcon.classList.add('fa-moon');
                     modeIndicator.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
-                    techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23121826' width='800' height='400'/%3E%3Cg fill='%236c5ce7' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23fd79a8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%23a29bfe' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+                    techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23121826' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E";
                 }
                 
                 // Show mode indicator for 3 seconds
