@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post-Installation Guide for Operating Systems</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary: #1A2A80;
+            --primary: #5265cf;
             --primary-dark: #3B38A0;
             --secondary: #7A85C1;
             --accent: #B2B0E8;
@@ -36,6 +38,14 @@
             --filter-btn-text: #e2e8f0;
             --search-bg: #1e293b;
         }
+
+        /* Make all H2 headers and icons visible in dark mode */
+        .dark-mode h2,
+        .dark-mode h2 i {
+            color: var(--text);
+        }
+
+
 
         * {
             margin: 0;
@@ -224,15 +234,16 @@
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
         }
 
+
         .category h2 {
             color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.8rem;
+            font-size: 1.5em;
+            margin-bottom: 10px;
             border-bottom: 2px solid var(--secondary);
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1.5rem;
+
         }
 
         .category ul {
@@ -320,15 +331,15 @@
             .content {
                 grid-template-columns: 1fr;
             }
-            
+
             .controls {
                 flex-direction: column;
             }
-            
+
             .search-box {
                 width: 100%;
             }
-            
+
             h1 {
                 font-size: 2.2rem;
             }
@@ -381,48 +392,53 @@
         }
 
         /* Navigation bar */
-.nav-bar {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 1rem;
-  background: var(--card);
-  box-shadow: var(--shadow);
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 2rem;
-}
-.nav-link {
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.nav-link:hover {
-  color: var(--primary-dark);
-}
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1rem;
+            background: var(--card);
+            box-shadow: var(--shadow);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-dark);
+        }
     </style>
 </head>
+
 <body class="light-mode">
     <header>
         <div class="header-content">
             <h1>Post-Installation Guide for Operating Systems</h1>
             <p class="subtitle">Everything you need after installing Windows to set up your system</p>
             <p class="author">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='30' fill='%23B2B0E8'/%3E%3Ccircle cx='50' cy='100' r='40' fill='%231A2A80'/%3E%3C/svg%3E" alt="Youssef Mahmoud">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='30' fill='%23B2B0E8'/%3E%3Ccircle cx='50' cy='100' r='40' fill='%231A2A80'/%3E%3C/svg%3E"
+                    alt="Youssef Mahmoud">
                 Written by: Youssef Mahmoud
             </p>
             <nav class="nav-bar">
-  <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
-  <a href="videos.html" class="nav-link"><i class="fas fa-video"></i> Videos</a>
-</nav>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="videos.html" class="nav-link"><i class="fas fa-video"></i> Videos</a>
+            </nav>
 
         </div>
     </header>
 
     <div class="tech-image">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E" alt="Tech Background" width="800" height="400" id="tech-image">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E"
+            alt="Tech Background" width="800" height="400" id="tech-image">
     </div>
 
     <div class="container">
@@ -431,7 +447,7 @@
                 <input type="text" id="search-input" placeholder="Search for applications and tools...">
                 <i class="fas fa-search"></i>
             </div>
-            
+
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">
                     <i class="fas fa-layer-group"></i> All
@@ -446,7 +462,7 @@
                     <i class="fas fa-code"></i> For Developers
                 </button>
             </div>
-            
+
             <button class="theme-toggle" id="theme-toggle">
                 <i class="fas fa-moon"></i>
             </button>
@@ -484,48 +500,48 @@
                     { name: "Install PowerShell 7 + Windows Terminal", type: "optional", link: "https://github.com/PowerShell/PowerShell/releases", description: "Modern command-line shell and terminal for power users and developers." }
                 ]
             },
-          {
-    title: "Recommended Applications",
-    icon: "fas fa-thumbs-up",
-    items: [
-        { name: "Free Download Manager", type: "essential", link: "https://www.freedownloadmanager.org/download.htm", description: "Accelerates downloads and supports torrents and video downloading." },
-        { name: "Microsoft 365 / LibreOffice", type: "optional", link: "https://www.microsoft.com/microsoft-365", description: "Productivity suites for documents, spreadsheets, and presentations." },
-        { name: "Discord / Slack / Teams", type: "optional", link: "https://discord.com/download", description: "Communication platforms for messaging, voice, and video calls." },
-        { name: "CrystalDiskInfo + HWMonitor", type: "essential", link: "https://crystalmark.info/en/software/crystaldiskinfo/", description: "Tools for monitoring hard drive health and system temperatures." },
-        { name: "VLC Media Player", type: "optional", link: "https://www.videolan.org/vlc/", description: "Versatile media player that supports almost all audio and video formats." },
-        { name: "Notepad++", type: "optional", link: "https://notepad-plus-plus.org/downloads/", description: "Advanced text editor with syntax highlighting for programmers." },
-        { name: "CapCut", type: "optional", link: "https://www.capcut.com/download", description: "User-friendly video editing software with professional features." },
-        { name: "DaVinci Resolve", type: "optional", link: "https://www.blackmagicdesign.com/products/davinciresolve", description: "Professional video editing, color correction, and audio post-production software." },
-        { name: "Notion / Obsidian", type: "optional", link: "https://www.notion.so/desktop", description: "Note-taking and knowledge management applications." },
-        { name: "Visual Studio Code", type: "dev", link: "https://code.visualstudio.com/download", description: "Lightweight but powerful source code editor with extensive extension support." },
-        { name: "OBS Studio", type: "optional", link: "https://obsproject.com/download", description: "Open-source software for video recording and live streaming." },
-        { name: "Ocam", type: "optional", link: "https://ohsoft.net/eng/ocam/", description: "A lightweight screen recorder and screenshot capture tool." },
-        { name: "Adobe Acrobat", type: "optional", link: "https://get.adobe.com/reader/", description: "PDF viewer and editor with advanced features for document management." },
-        { name: "SumatraPDF", type: "optional", link: "https://www.sumatrapdfreader.org/download-free-pdf-viewer", description: "Lightweight PDF, eBook, and document viewer with minimal resource usage." },
-        { name: "Microsoft PowerToys", type: "optional", link: "https://github.com/microsoft/PowerToys/releases", description: "Utilities for power users to tune and streamline Windows experience." },
-        { name: "Telegram Desktop", type: "optional", link: "https://desktop.telegram.org/", description: "Fast and secure messaging app with sync across devices." },
-        { name: "WhatsApp Desktop", type: "optional", link: "https://www.whatsapp.com/download", description: "Desktop version of the popular messaging application." },
-        { name: "Signal", type: "optional", link: "https://signal.org/download/", description: "Private and secure messaging app with end-to-end encryption." },
-        { name: "Steam / Epic Games / GOG Galaxy", type: "optional", link: "https://store.steampowered.com/about/", description: "Digital distribution platforms for video games." },
-        { name: "DeepL Translator", type: "optional", link: "https://www.deepl.com/translator", description: "AI-powered translation tool with high accuracy." },
-        { name: "Brave / Firefox / Chrome", type: "optional", link: "https://www.mozilla.org/firefox/new/", description: "Web browsers with various privacy and feature focuses." },
-        { name: "GIMP / Krita", type: "optional", link: "https://www.gimp.org/downloads/", description: "Powerful image editing and digital painting applications." },
-        { name: "qBittorrent", type: "essential", link: "https://www.qbittorrent.org/download.php", description: "Open-source BitTorrent client with no ads and low resource usage." },
-        { name: "VirtualBox / VMware", type: "optional", link: "https://www.virtualbox.org/wiki/Downloads", description: "Virtualization software for running multiple operating systems simultaneously." },
-        { name: "Rufus", type: "essential", link: "https://rufus.ie/en/", description: "Utility for creating bootable USB drives from ISO images." },
-        { name: "Ventoy", type: "essential", link: "https://www.ventoy.net/en/download.html", description: "Tool to create bootable USB drives that can boot multiple ISO files." },
-        { name: "ShareX", type: "optional", link: "https://getsharex.com/", description: "Screen capture, file sharing and productivity tool with many features." },
-        { name: "Anki", type: "optional", link: "https://apps.ankiweb.net/", description: "Powerful flashcard application that uses spaced repetition for efficient learning." },
-        { name: "CPU-Z & GPU-Z / Speccy", type: "optional", link: "https://www.cpuid.com/softwares/cpu-z.html", description: "System information tools that provide detailed hardware specifications." },
-        { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/", description: "Lightning-fast file search utility for Windows that indexes your entire drive." },
-        { name: "EarTrumpet", type: "optional", link: "https://github.com/File-New-Project/EarTrumpet/releases", description: "Volume control tool for Windows that provides per-application audio control." },
-        { name: "Ditto Clipboard Manager", type: "optional", link: "https://ditto-cp.sourceforge.io/", description: "Clipboard manager that saves everything you copy for later use." },
-        { name: "Sandboxie Plus", type: "optional", link: "https://sandboxie-plus.com/downloads/", description: "Run applications in an isolated sandbox environment to test and contain potential threats." },
-        { name: "Radmin VPN", type: "optional", link: "https://www.radmin-vpn.com/", description: "Free and easy-to-use VPN software for creating secure virtual LAN networks." },
-        { name: "Stacher", type: "optional", link: "https://stacher.io/", description: "Download YouTube videos and playlists for offline viewing." }
-    ]
-},
-      {
+            {
+                title: "Recommended Applications",
+                icon: "fas fa-thumbs-up",
+                items: [
+                    { name: "Free Download Manager", type: "essential", link: "https://www.freedownloadmanager.org/download.htm", description: "Accelerates downloads and supports torrents and video downloading." },
+                    { name: "Microsoft 365 / LibreOffice", type: "optional", link: "https://www.microsoft.com/microsoft-365", description: "Productivity suites for documents, spreadsheets, and presentations." },
+                    { name: "Discord / Slack / Teams", type: "optional", link: "https://discord.com/download", description: "Communication platforms for messaging, voice, and video calls." },
+                    { name: "CrystalDiskInfo + HWMonitor", type: "essential", link: "https://crystalmark.info/en/software/crystaldiskinfo/", description: "Tools for monitoring hard drive health and system temperatures." },
+                    { name: "VLC Media Player", type: "optional", link: "https://www.videolan.org/vlc/", description: "Versatile media player that supports almost all audio and video formats." },
+                    { name: "Notepad++", type: "optional", link: "https://notepad-plus-plus.org/downloads/", description: "Advanced text editor with syntax highlighting for programmers." },
+                    { name: "CapCut", type: "optional", link: "https://www.capcut.com/download", description: "User-friendly video editing software with professional features." },
+                    { name: "DaVinci Resolve", type: "optional", link: "https://www.blackmagicdesign.com/products/davinciresolve", description: "Professional video editing, color correction, and audio post-production software." },
+                    { name: "Notion / Obsidian", type: "optional", link: "https://www.notion.so/desktop", description: "Note-taking and knowledge management applications." },
+                    { name: "Visual Studio Code", type: "dev", link: "https://code.visualstudio.com/download", description: "Lightweight but powerful source code editor with extensive extension support." },
+                    { name: "OBS Studio", type: "optional", link: "https://obsproject.com/download", description: "Open-source software for video recording and live streaming." },
+                    { name: "Ocam", type: "optional", link: "https://ohsoft.net/eng/ocam/", description: "A lightweight screen recorder and screenshot capture tool." },
+                    { name: "Adobe Acrobat", type: "optional", link: "https://get.adobe.com/reader/", description: "PDF viewer and editor with advanced features for document management." },
+                    { name: "SumatraPDF", type: "optional", link: "https://www.sumatrapdfreader.org/download-free-pdf-viewer", description: "Lightweight PDF, eBook, and document viewer with minimal resource usage." },
+                    { name: "Microsoft PowerToys", type: "optional", link: "https://github.com/microsoft/PowerToys/releases", description: "Utilities for power users to tune and streamline Windows experience." },
+                    { name: "Telegram Desktop", type: "optional", link: "https://desktop.telegram.org/", description: "Fast and secure messaging app with sync across devices." },
+                    { name: "WhatsApp Desktop", type: "optional", link: "https://www.whatsapp.com/download", description: "Desktop version of the popular messaging application." },
+                    { name: "Signal", type: "optional", link: "https://signal.org/download/", description: "Private and secure messaging app with end-to-end encryption." },
+                    { name: "Steam / Epic Games / GOG Galaxy", type: "optional", link: "https://store.steampowered.com/about/", description: "Digital distribution platforms for video games." },
+                    { name: "DeepL Translator", type: "optional", link: "https://www.deepl.com/translator", description: "AI-powered translation tool with high accuracy." },
+                    { name: "Brave / Firefox / Chrome", type: "optional", link: "https://www.mozilla.org/firefox/new/", description: "Web browsers with various privacy and feature focuses." },
+                    { name: "GIMP / Krita", type: "optional", link: "https://www.gimp.org/downloads/", description: "Powerful image editing and digital painting applications." },
+                    { name: "qBittorrent", type: "essential", link: "https://www.qbittorrent.org/download.php", description: "Open-source BitTorrent client with no ads and low resource usage." },
+                    { name: "VirtualBox / VMware", type: "optional", link: "https://www.virtualbox.org/wiki/Downloads", description: "Virtualization software for running multiple operating systems simultaneously." },
+                    { name: "Rufus", type: "essential", link: "https://rufus.ie/en/", description: "Utility for creating bootable USB drives from ISO images." },
+                    { name: "Ventoy", type: "essential", link: "https://www.ventoy.net/en/download.html", description: "Tool to create bootable USB drives that can boot multiple ISO files." },
+                    { name: "ShareX", type: "optional", link: "https://getsharex.com/", description: "Screen capture, file sharing and productivity tool with many features." },
+                    { name: "Anki", type: "optional", link: "https://apps.ankiweb.net/", description: "Powerful flashcard application that uses spaced repetition for efficient learning." },
+                    { name: "CPU-Z & GPU-Z / Speccy", type: "optional", link: "https://www.cpuid.com/softwares/cpu-z.html", description: "System information tools that provide detailed hardware specifications." },
+                    { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/", description: "Lightning-fast file search utility for Windows that indexes your entire drive." },
+                    { name: "EarTrumpet", type: "optional", link: "https://github.com/File-New-Project/EarTrumpet/releases", description: "Volume control tool for Windows that provides per-application audio control." },
+                    { name: "Ditto Clipboard Manager", type: "optional", link: "https://ditto-cp.sourceforge.io/", description: "Clipboard manager that saves everything you copy for later use." },
+                    { name: "Sandboxie Plus", type: "optional", link: "https://sandboxie-plus.com/downloads/", description: "Run applications in an isolated sandbox environment to test and contain potential threats." },
+                    { name: "Radmin VPN", type: "optional", link: "https://www.radmin-vpn.com/", description: "Free and easy-to-use VPN software for creating secure virtual LAN networks." },
+                    { name: "Stacher", type: "optional", link: "https://stacher.io/", description: "Download YouTube videos and playlists for offline viewing." }
+                ]
+            },
+            {
                 title: "Programming & Development",
                 icon: "fas fa-laptop-code",
                 items: [
@@ -601,33 +617,33 @@
         function renderContent(filter = 'all', searchTerm = '') {
             const container = document.getElementById('content-container');
             container.innerHTML = '';
-            
+
             data.forEach(category => {
                 const filteredItems = category.items.filter(item => {
                     const matchesFilter = filter === 'all' || item.type === filter;
                     const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
                     return matchesFilter && matchesSearch;
                 });
-                
+
                 if (filteredItems.length > 0) {
                     const categoryEl = document.createElement('div');
                     categoryEl.className = 'category';
-                    
+
                     let categoryHTML = `
                         <h2><i class="${category.icon}"></i> ${category.title}</h2>
                         <ul>
                     `;
-                    
+
                     filteredItems.forEach(item => {
                         let itemName = item.name;
                         if (searchTerm) {
                             const regex = new RegExp(`(${searchTerm})`, 'gi');
                             itemName = itemName.replace(regex, '<span class="highlight">$1</span>');
                         }
-                        
+
                         const optionalClass = item.type === 'optional' ? 'optional' : '';
                         const itemId = item.name.replace(/\s+/g, '-').toLowerCase();
-                        
+
                         categoryHTML += `
                             <li>
                                 <div class="item-content">
@@ -642,7 +658,7 @@
                             </div>
                         `;
                     });
-                    
+
                     categoryHTML += '</ul>';
                     categoryEl.innerHTML = categoryHTML;
                     container.appendChild(categoryEl);
@@ -666,7 +682,7 @@
 
         // Get appropriate icon based on type
         function getItemIcon(type) {
-            switch(type) {
+            switch (type) {
                 case 'essential': return 'star';
                 case 'optional': return 'circle-notch';
                 case 'dev': return 'code';
@@ -681,11 +697,11 @@
             const modeIndicator = document.getElementById('mode-indicator');
             const modeIcon = modeIndicator.querySelector('i');
             const techImage = document.getElementById('tech-image');
-            
+
             // Check if user has a dark mode preference saved
             const savedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
+
             // Set initial theme
             if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
                 document.body.classList.remove('dark-mode');
@@ -700,7 +716,7 @@
                 icon.classList.add('fa-sun');
                 techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23121826' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E";
             }
-            
+
             themeToggle.addEventListener('click', () => {
                 if (document.body.classList.contains('dark-mode')) {
                     document.body.classList.remove('dark-mode');
@@ -723,7 +739,7 @@
                     modeIndicator.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
                     techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23121826' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E";
                 }
-                
+
                 // Show mode indicator for 3 seconds
                 modeIndicator.style.display = 'flex';
                 setTimeout(() => {
@@ -736,17 +752,17 @@
         function setupFilters() {
             const filterButtons = document.querySelectorAll('.filter-btn');
             const searchInput = document.getElementById('search-input');
-            
+
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
-                    
+
                     const filter = button.getAttribute('data-filter');
                     renderContent(filter, searchInput.value);
                 });
             });
-            
+
             searchInput.addEventListener('input', () => {
                 const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
                 renderContent(activeFilter, searchInput.value);
@@ -758,7 +774,7 @@
             renderContent();
             setupDarkMode();
             setupFilters();
-            
+
             // Hide mode indicator after 3 seconds of loading
             setTimeout(() => {
                 document.getElementById('mode-indicator').style.display = 'none';
@@ -766,4 +782,5 @@
         });
     </script>
 </body>
+
 </html>
