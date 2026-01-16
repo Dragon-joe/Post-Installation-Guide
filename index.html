@@ -1,364 +1,553 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post-Installation Guide for Operating Systems</title>
+    <title>الدليل الشامل لما بعد تثبيت أنظمة التشغيل</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #5265cf;
-            --primary-dark: #3B38A0;
-            --secondary: #7A85C1;
-            --accent: #B2B0E8;
-            --text: #2d3436;
-            --bg: #f5f6fa;
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --primary-light: #4895ef;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --text: #1a1a2e;
+            --text-light: #6c757d;
+            --bg: #f8f9fa;
             --card: #ffffff;
-            --border: #e2e8f0;
-            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            --radius: 12px;
-            --transition: all 0.3s ease;
-            --header-bg: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            --filter-btn-bg: #ffffff;
-            --filter-btn-text: #2d3436;
-            --search-bg: #ffffff;
+            --border: #e9ecef;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+            --radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
+            --gradient-accent: linear-gradient(135deg, var(--accent), var(--warning));
+            --header-height: 70px;
         }
 
         .dark-mode {
-            --text: #e2e8f0;
+            --primary: #5a6ff0;
+            --primary-dark: #4a5cd8;
+            --primary-light: #6a81ff;
+            --text: #e9ecef;
+            --text-light: #adb5bd;
             --bg: #121826;
             --card: #1a2234;
             --border: #2d3748;
-            --shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-            --header-bg: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            --filter-btn-bg: #1e293b;
-            --filter-btn-text: #e2e8f0;
-            --search-bg: #1e293b;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.35);
         }
-
-        /* Make all H2 headers and icons visible in dark mode */
-        .dark-mode h2,
-        .dark-mode h2 i {
-            color: var(--text);
-        }
-
-
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: var(--transition);
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.6;
-            padding-bottom: 50px;
+            line-height: 1.8;
+            direction: rtl;
+            overflow-x: hidden;
+            transition: var(--transition);
         }
 
-        header {
-            background: var(--header-bg);
+        /* تصميم شريط التنقل */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .dark-mode .navbar {
+            background: rgba(26, 34, 52, 0.95);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            padding: 3rem 1rem;
-            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(67, 97, 238, 0.1);
+        }
+
+        .nav-link.active {
+            color: white;
+            background: var(--gradient-primary);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .theme-toggle {
+            background: var(--card);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--primary);
             box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* الهيدر الرئيسي */
+        .main-header {
+            padding: calc(var(--header-height) + 4rem) 2rem 6rem;
+            text-align: center;
+            background: var(--gradient-primary);
+            color: white;
             position: relative;
             overflow: hidden;
         }
 
-        header::before {
-            content: "";
+        .header-bg {
             position: absolute;
             top: 0;
-            left: 0;
             right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 30%);
             z-index: 0;
         }
 
         .header-content {
             position: relative;
             z-index: 1;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 1rem;
+        .main-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-right: auto;
+            margin-left: auto;
         }
 
         .author {
-            font-style: italic;
-            opacity: 0.9;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 12px 24px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            margin-top: 2rem;
         }
 
-        .author img {
-            width: 28px;
-            height: 28px;
+        .author-img {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.5);
         }
 
-        .container {
+        /* البانر الترويجي */
+        .promo-banner {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: -2rem auto 3rem;
             max-width: 1200px;
-            margin: 2.5rem auto;
-            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(248, 37, 133, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .promo-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .promo-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .promo-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .promo-btn {
+            background: white;
+            color: var(--accent);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .promo-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* عناصر التحكم */
+        .controls-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
         }
 
         .controls {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
             display: flex;
             flex-wrap: wrap;
-            gap: 1.2rem;
-            margin-bottom: 2.5rem;
-            justify-content: center;
+            gap: 1.5rem;
             align-items: center;
-            background: var(--card);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            justify-content: space-between;
+            margin-bottom: 3rem;
         }
 
-        .search-box {
+        .search-container {
             flex: 1;
-            min-width: 280px;
+            min-width: 300px;
             max-width: 500px;
             position: relative;
         }
 
-        .search-box input {
+        .search-box {
             width: 100%;
-            padding: 14px 22px;
-            border: 1px solid var(--border);
+            padding: 1.2rem 3rem 1.2rem 1.5rem;
+            border: 2px solid var(--border);
             border-radius: 50px;
-            background-color: var(--search-bg);
+            background: var(--card);
             color: var(--text);
             font-size: 1rem;
-            box-shadow: var(--shadow);
+            font-family: 'Cairo', sans-serif;
+            transition: var(--transition);
         }
 
-        .search-box i {
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .search-icon {
             position: absolute;
-            right: 22px;
+            left: 1.5rem;
             top: 50%;
             transform: translateY(-50%);
             color: var(--primary);
+            font-size: 1.2rem;
         }
 
         .filter-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 0.8rem;
-            justify-content: center;
         }
 
         .filter-btn {
-            padding: 12px 18px;
+            padding: 0.8rem 1.5rem;
             border: none;
             border-radius: 50px;
-            background-color: var(--filter-btn-bg);
-            color: var(--filter-btn-text);
-            cursor: pointer;
+            background: var(--bg);
+            color: var(--text);
             font-weight: 600;
-            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .filter-btn.active {
-            background-color: var(--primary);
-            color: white;
+            font-family: 'Cairo', sans-serif;
         }
 
         .filter-btn:hover {
-            background-color: var(--primary);
+            background: var(--primary);
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
         }
 
-        .theme-toggle {
-            background: var(--card);
-            border: none;
-            border-radius: 50%;
-            width: 54px;
-            height: 54px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            color: var(--primary);
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
         }
 
-        .theme-toggle:hover {
-            transform: rotate(15deg) scale(1.1);
+        /* المحتوى الرئيسي */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
         }
 
-        .content {
+        .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
         }
 
-        .category {
-            background-color: var(--card);
+        /* بطاقات الفئات */
+        .category-card {
+            background: var(--card);
             border-radius: var(--radius);
-            padding: 1.8rem;
+            overflow: hidden;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
+            transition: var(--transition);
             border: 1px solid var(--border);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
-        .category:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
-
-        .category h2 {
-            color: var(--primary);
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            border-bottom: 2px solid var(--secondary);
+        .category-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 12px;
-
+            gap: 1rem;
         }
 
-        .category ul {
-            list-style-type: none;
-        }
-
-        .category li {
-            padding: 12px 0;
-            border-bottom: 1px dashed var(--border);
+        .category-icon {
+            font-size: 1.8rem;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 10px;
+            justify-content: center;
         }
 
-        .category li:last-child {
-            border-bottom: none;
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
-        .category li .item-content {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .category-items {
+            padding: 1.5rem;
             flex: 1;
         }
 
-        .category li i {
-            color: var(--accent);
-            font-size: 1.1rem;
+        .app-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .app-item:hover {
+            padding-right: 10px;
+        }
+
+        .app-item:last-child {
+            border-bottom: none;
+        }
+
+        .app-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .app-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 36px;
+            height: 36px;
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-name {
+            font-weight: 600;
+            color: var(--text);
         }
 
         .optional {
-            opacity: 0.85;
+            opacity: 0.8;
+            font-size: 0.9em;
         }
 
         .optional::after {
-            content: " (Optional)";
+            content: " (اختياري)";
+            color: var(--text-light);
             font-size: 0.85em;
-            color: var(--accent);
         }
 
         .download-btn {
-            background: var(--primary);
+            background: var(--gradient-primary);
             color: white;
             border: none;
-            border-radius: 6px;
-            padding: 6px 12px;
-            font-size: 0.85rem;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            transition: all 0.2s ease;
+            gap: 6px;
+            transition: var(--transition);
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
         }
 
         .download-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
         }
 
-        .footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding: 2rem 1rem;
-            color: var(--text);
-            opacity: 0.8;
+        .info-icon {
+            color: var(--primary);
+            cursor: pointer;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+
+        .info-icon:hover {
+            color: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .app-description {
+            display: none;
+            background: rgba(67, 97, 238, 0.05);
+            padding: 1rem;
+            margin-top: 0.5rem;
+            border-radius: 8px;
+            border-right: 4px solid var(--primary);
             font-size: 0.9rem;
+            color: var(--text);
+            animation: fadeIn 0.3s ease;
         }
 
-        .tech-image {
-            display: flex;
-            justify-content: center;
-            margin: 2rem 0 3rem;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .tech-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                grid-template-columns: 1fr;
-            }
-
-            .controls {
-                flex-direction: column;
-            }
-
-            .search-box {
-                width: 100%;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-        }
-
-        .highlight {
-            background-color: rgba(178, 176, 232, 0.3);
-            border-radius: 4px;
-            padding: 0 4px;
-            font-weight: 500;
-        }
-
+        /* مؤشر الوضع */
         .mode-indicator {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary);
+            bottom: 2rem;
+            left: 2rem;
+            background: var(--gradient-primary);
             color: white;
-            padding: 10px 15px;
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
             font-size: 0.9rem;
             box-shadow: var(--shadow);
@@ -366,373 +555,515 @@
             align-items: center;
             gap: 8px;
             z-index: 100;
-            opacity: 0.9;
-            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
         }
 
-        .program-info {
-            display: none;
+        .mode-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* الفوتر */
+        .footer {
             background: var(--card);
-            border-left: 4px solid var(--primary);
-            padding: 12px;
-            margin-top: 8px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            color: var(--text);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
         }
 
-        .info-icon {
-            color: var(--primary);
-            cursor: pointer;
-            margin-left: 8px;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .info-icon:hover {
-            color: var(--accent);
-        }
-
-        /* Navigation bar */
-        .nav-bar {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            padding: 1rem;
-            background: var(--card);
-            box-shadow: var(--shadow);
-            border-bottom: 1px solid var(--border);
+        .footer-text {
+            color: var(--text-light);
             margin-bottom: 2rem;
         }
 
-        .nav-link {
-            font-weight: 600;
-            text-decoration: none;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg);
             color: var(--primary);
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
         }
 
-        .nav-link:hover {
-            color: var(--primary-dark);
-        }
-
-        .app-banner {
-            background-color: var(--primary-color);
+        .social-link:hover {
+            background: var(--primary);
             color: white;
-            padding: 12px 20px;
-            font-size: 1rem;
-            border-radius: 8px;
-            margin: 10px 0;
-            box-shadow: var(--box-shadow);
+            transform: translateY(-5px);
+        }
+
+        /* تصميم متجاوب */
+        @media (max-width: 1024px) {
+            .main-title { font-size: 2.8rem; }
+            .content-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0 1rem; }
+            .nav-links { display: none; }
+            .main-header { padding: calc(var(--header-height) + 3rem) 1rem 4rem; }
+            .main-title { font-size: 2.2rem; }
+            .promo-content { flex-direction: column; text-align: center; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .search-container { max-width: 100%; }
+            .content-grid { grid-template-columns: 1fr; }
+            .mode-indicator { left: 1rem; bottom: 1rem; }
+        }
+
+        /* تأثيرات إضافية */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-light);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float-particle 20s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        /* شريط التقدم */
+        .progress-bar {
+            position: fixed;
+            top: var(--header-height);
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* تأثيرات النص */
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* تأثيرات الكرت عند التمرير */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 
 <body class="light-mode">
-    <header>
-        <div class="header-content">
-            <h1>Post-Installation Guide for Operating Systems</h1>
-            <p class="subtitle">Everything you need after installing Windows to set up your system</p>
-            <p class="author">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='30' fill='%23B2B0E8'/%3E%3Ccircle cx='50' cy='100' r='40' fill='%231A2A80'/%3E%3C/svg%3E"
-                    alt="Youssef Mahmoud">
-                Written by: Youssef Mahmoud
-            </p>
-            <nav class="nav-bar">
-                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
-                <a href="videos.html" class="nav-link"><i class="fas fa-video"></i> Videos</a>
-                <a href="about.html" class="nav-link"><i class="fas fa-about"></i> About</a>
-            </nav>
-
-        </div>
-        <div class="app-banner">
-            <strong>UniGetUI (WingetUI):</strong> A powerful open-source tool to install, update, and manage hundreds of
-            applications at once — all from one clean interface.
-        </div>
-    </header>
-
-    <div class="tech-image">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E"
-            alt="Tech Background" width="800" height="400" id="tech-image">
+    <!-- شريط التقدم -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
     </div>
 
-    <div class="container">
-        <div class="controls">
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="Search for applications and tools...">
-                <i class="fas fa-search"></i>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                دليل ما بعد التثبيت
+            </a>
+            
+            <div class="nav-links">
+                <a href="#" class="nav-link active">
+                    <i class="fas fa-home"></i> الرئيسية
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-download"></i> التحميلات
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-video"></i> الفيديوهات
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-info-circle"></i> حول الموقع
+                </a>
             </div>
-
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-layer-group"></i> All
-                </button>
-                <button class="filter-btn" data-filter="essential">
-                    <i class="fas fa-star"></i> Essential
-                </button>
-                <button class="filter-btn" data-filter="optional">
-                    <i class="fas fa-circle-notch"></i> Optional
-                </button>
-                <button class="filter-btn" data-filter="dev">
-                    <i class="fas fa-code"></i> For Developers
-                </button>
-            </div>
-
+            
             <button class="theme-toggle" id="theme-toggle">
                 <i class="fas fa-moon"></i>
             </button>
         </div>
+    </nav>
 
-        <div class="content" id="content-container">
-            <!-- Content will be populated by JavaScript -->
+    <!-- الهيدر الرئيسي -->
+    <header class="main-header">
+        <div class="header-bg"></div>
+        <div class="header-content">
+            <h1 class="main-title">الدليل الشامل لما بعد تثبيت أنظمة التشغيل</h1>
+            <p class="main-subtitle">
+                كل ما تحتاجه بعد تثبيت ويندوز لإعداد جهازك بشكل مثالي. أدوات أساسية، تطبيقات مهمة، إعدادات وتحسينات للنظام
+            </p>
+            
+            <div class="author">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='30' fill='%23B2B0E8'/%3E%3Ccircle cx='50' cy='100' r='40' fill='%231A2A80'/%3E%3C/svg%3E" 
+                     alt="يوسف محمود" class="author-img">
+                <span>إعداد: <strong>يوسف محمود</strong></span>
+            </div>
         </div>
+    </header>
 
+    <!-- البانر الترويجي -->
+    <div class="controls-section">
+        <div class="promo-banner">
+            <div class="promo-content">
+                <div class="promo-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="promo-text">
+                    <h3>UniGetUI (WingetUI)</h3>
+                    <p>أداة مفتوحة المصور قوية لتثبيت وتحديث وإدارة المئات من التطبيقات مرة واحدة - كل ذلك من واجهة نظيفة واحدة.</p>
+                </div>
+                <button class="promo-btn">تحميل الآن <i class="fas fa-arrow-down"></i></button>
+            </div>
+        </div>
     </div>
 
-    <div class="footer">
-        <p>© 2023 Post-Installation Guide for Operating Systems - All rights reserved | Written by Youssef Mahmoud</p>
+    <!-- عناصر التحكم -->
+    <div class="controls-section">
+        <div class="controls">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search-input" class="search-box" placeholder="ابحث عن التطبيقات والأدوات...">
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-layer-group"></i> الكل
+                </button>
+                <button class="filter-btn" data-filter="essential">
+                    <i class="fas fa-star"></i> أساسي
+                </button>
+                <button class="filter-btn" data-filter="optional">
+                    <i class="fas fa-circle-notch"></i> اختياري
+                </button>
+                <button class="filter-btn" data-filter="dev">
+                    <i class="fas fa-code"></i> للمطورين
+                </button>
+            </div>
+        </div>
     </div>
 
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <div class="content-grid" id="content-container">
+            <!-- سيتم ملء المحتوى بواسطة الجافاسكريبت -->
+        </div>
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">
+                © 2023 الدليل الشامل لما بعد تثبيت أنظمة التشغيل - جميع الحقوق محفوظة
+            </p>
+            <p class="footer-text">
+                إعداد وتصميم: <span class="text-gradient">يوسف محمود</span>
+            </p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- مؤشر الوضع -->
     <div class="mode-indicator" id="mode-indicator">
-        <i class="fas fa-sun"></i> Light Mode
+        <i class="fas fa-sun"></i> الوضع النهاري
     </div>
+
+    <!-- الجسيمات العائمة -->
+    <div class="floating-particles" id="particles-container"></div>
 
     <script>
-        // Data from the PDF with download links and descriptions
+        // البيانات من الملف السابق مع تعديلات للغة العربية
         const data = [
             {
-                title: "Essential Updates & Tools",
+                title: "التحديثات والأدوات الأساسية",
                 icon: "fas fa-tools",
                 items: [
-                    { name: "Run Windows Update", type: "essential", link: "ms-settings:windowsupdate", description: "Keep your system secure and up-to-date with the latest patches and features from Microsoft." },
-                    { name: "Install GPU Drivers (NVIDIA/AMD/Intel)", type: "essential", description: "Get the latest graphics drivers for optimal gaming and multimedia performance." },
-                    { name: "Install Microsoft Visual C++ Redistributables", type: "essential", link: "https://github.com/MicrosoftDocs/cpp-docs/blob/main/docs/windows/latest-supported-vc-redist.md", description: "Required runtime components for many applications developed with Visual Studio." },
-                    { name: "Install DirectX Runtime", type: "essential", link: "https://www.microsoft.com/en-us/download/details.aspx?id=35", description: "Essential for running games and multimedia applications on Windows." },
-                    { name: "Install Java (JRE)", type: "essential", link: "https://www.java.com/download/", description: "Java Runtime Environment needed to run Java applications and applets." },
-                    { name: "Install PC Manager", type: "essential", link: "https://pcmanager.microsoft.com/en-us", description: "Microsoft's utility for optimizing and maintaining your PC's performance." },
-                    { name: "Install WinRAR", type: "optional", link: "https://www.win-rar.com/download.html", description: "Powerful archive manager that can unpack various compression formats." },
-                    { name: "Install 7-Zip", type: "optional", link: "https://www.7-zip.org/download.html", description: "Open-source file archiver with high compression ratio support for many formats." },
-                    { name: "Install .NET Runtime", type: "optional", link: "https://dotnet.microsoft.com/download/dotnet", description: "Framework for building and running applications on Windows." },
-                    { name: "Install PowerShell 7 + Windows Terminal", type: "optional", link: "https://github.com/PowerShell/PowerShell/releases", description: "Modern command-line shell and terminal for power users and developers." }
+                    { name: "تشغيل تحديثات ويندوز", type: "essential", link: "ms-settings:windowsupdate", description: "حافظ على نظامك آمنًا وحديثًا مع أحدث التصحيحات والميزات من مايكروسوفت." },
+                    { name: "تثبيت تعريفات كارت الشاشة (NVIDIA/AMD/Intel)", type: "essential", description: "احصل على أحدث تعريفات الرسومات لأفضل أداء في الألعاب والوسائط المتعددة." },
+                    { name: "تثبيت Microsoft Visual C++ Redistributables", type: "essential", link: "https://github.com/MicrosoftDocs/cpp-docs/blob/main/docs/windows/latest-supported-vc-redist.md", description: "مكونات وقت التشغيل المطلوبة للعديد من التطبيقات المطورة باستخدام Visual Studio." },
+                    { name: "تثبيت DirectX Runtime", type: "essential", link: "https://www.microsoft.com/en-us/download/details.aspx?id=35", description: "أساسي لتشغيل الألعاب وتطبيقات الوسائط المتعددة على ويندوز." },
+                    { name: "تثبيت جافا (JRE)", type: "essential", link: "https://www.java.com/download/", description: "بيئة تشغيل جافا اللازمة لتشغيل تطبيقات جافا." },
+                    { name: "تثبيت PC Manager", type: "essential", link: "https://pcmanager.microsoft.com/en-us", description: "أداة مايكروسوفت لتحسين وصيانة أداء جهاز الكمبيوتر الخاص بك." },
+                    { name: "تثبيت WinRAR", type: "optional", link: "https://www.win-rar.com/download.html", description: "مدير أرشيف قوي يمكنه فك العديد من صيغ الضغط." },
+                    { name: "تثبيت 7-Zip", type: "optional", link: "https://www.7-zip.org/download.html", description: "أداة ضغط الملفات مفتوحة المصدر مع دعم العديد من الصيغ." },
+                    { name: "تثبيت .NET Runtime", type: "optional", link: "https://dotnet.microsoft.com/download/dotnet", description: "إطار عمل لبناء وتشغيل التطبيقات على ويندوز." },
+                    { name: "تثبيت PowerShell 7 + Windows Terminal", type: "optional", link: "https://github.com/PowerShell/PowerShell/releases", description: "واجهة سطر أوامر حديثة للمستخدمين المتقدمين والمطورين." }
                 ]
             },
             {
-                title: "Recommended Applications",
+                title: "التطبيقات الموصى بها",
                 icon: "fas fa-thumbs-up",
                 items: [
-                    { name: "Free Download Manager", type: "essential", link: "https://www.freedownloadmanager.org/download.htm", description: "Accelerates downloads and supports torrents and video downloading." },
-                    { name: "Microsoft 365 / LibreOffice", type: "optional", link: "https://www.microsoft.com/microsoft-365", description: "Productivity suites for documents, spreadsheets, and presentations." },
-                    { name: "Discord / Slack / Teams", type: "optional", link: "https://discord.com/download", description: "Communication platforms for messaging, voice, and video calls." },
-                    { name: "CrystalDiskInfo + HWMonitor", type: "essential", link: "https://crystalmark.info/en/software/crystaldiskinfo/", description: "Tools for monitoring hard drive health and system temperatures." },
-                    { name: "VLC Media Player", type: "optional", link: "https://www.videolan.org/vlc/", description: "Versatile media player that supports almost all audio and video formats." },
-                    { name: "Notepad++", type: "optional", link: "https://notepad-plus-plus.org/downloads/", description: "Advanced text editor with syntax highlighting for programmers." },
-                    { name: "CapCut", type: "optional", link: "https://www.capcut.com/download", description: "User-friendly video editing software with professional features." },
-                    { name: "DaVinci Resolve", type: "optional", link: "https://www.blackmagicdesign.com/products/davinciresolve", description: "Professional video editing, color correction, and audio post-production software." },
-                    { name: "Notion / Obsidian", type: "optional", link: "https://www.notion.so/desktop", description: "Note-taking and knowledge management applications." },
-                    { name: "Visual Studio Code", type: "dev", link: "https://code.visualstudio.com/download", description: "Lightweight but powerful source code editor with extensive extension support." },
-                    { name: "OBS Studio", type: "optional", link: "https://obsproject.com/download", description: "Open-source software for video recording and live streaming." },
-                    { name: "Ocam", type: "optional", link: "https://ohsoft.net/eng/ocam/", description: "A lightweight screen recorder and screenshot capture tool." },
-                    { name: "Adobe Acrobat", type: "optional", link: "https://get.adobe.com/reader/", description: "PDF viewer and editor with advanced features for document management." },
-                    { name: "SumatraPDF", type: "optional", link: "https://www.sumatrapdfreader.org/download-free-pdf-viewer", description: "Lightweight PDF, eBook, and document viewer with minimal resource usage." },
-                    { name: "Microsoft PowerToys", type: "optional", link: "https://github.com/microsoft/PowerToys/releases", description: "Utilities for power users to tune and streamline Windows experience." },
-                    { name: "Telegram Desktop", type: "optional", link: "https://desktop.telegram.org/", description: "Fast and secure messaging app with sync across devices." },
-                    { name: "WhatsApp Desktop", type: "optional", link: "https://www.whatsapp.com/download", description: "Desktop version of the popular messaging application." },
-                    { name: "Signal", type: "optional", link: "https://signal.org/download/", description: "Private and secure messaging app with end-to-end encryption." },
-                    { name: "Steam / Epic Games / GOG Galaxy", type: "optional", link: "https://store.steampowered.com/about/", description: "Digital distribution platforms for video games." },
-                    { name: "DeepL Translator", type: "optional", link: "https://www.deepl.com/translator", description: "AI-powered translation tool with high accuracy." },
-                    { name: "Brave / Firefox / Chrome", type: "optional", link: "https://www.mozilla.org/firefox/new/", description: "Web browsers with various privacy and feature focuses." },
-                    { name: "GIMP / Krita", type: "optional", link: "https://www.gimp.org/downloads/", description: "Powerful image editing and digital painting applications." },
-                    { name: "qBittorrent", type: "essential", link: "https://www.qbittorrent.org/download.php", description: "Open-source BitTorrent client with no ads and low resource usage." },
-                    { name: "VirtualBox / VMware", type: "optional", link: "https://www.virtualbox.org/wiki/Downloads", description: "Virtualization software for running multiple operating systems simultaneously." },
-                    { name: "Rufus", type: "essential", link: "https://rufus.ie/en/", description: "Utility for creating bootable USB drives from ISO images." },
-                    { name: "Ventoy", type: "essential", link: "https://www.ventoy.net/en/download.html", description: "Tool to create bootable USB drives that can boot multiple ISO files." },
-                    { name: "ShareX", type: "optional", link: "https://getsharex.com/", description: "Screen capture, file sharing and productivity tool with many features." },
-                    { name: "Anki", type: "optional", link: "https://apps.ankiweb.net/", description: "Powerful flashcard application that uses spaced repetition for efficient learning." },
-                    { name: "CPU-Z & GPU-Z / Speccy", type: "optional", link: "https://www.cpuid.com/softwares/cpu-z.html", description: "System information tools that provide detailed hardware specifications." },
-                    { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/", description: "Lightning-fast file search utility for Windows that indexes your entire drive." },
-                    { name: "EarTrumpet", type: "optional", link: "https://github.com/File-New-Project/EarTrumpet/releases", description: "Volume control tool for Windows that provides per-application audio control." },
-                    { name: "Ditto Clipboard Manager", type: "optional", link: "https://ditto-cp.sourceforge.io/", description: "Clipboard manager that saves everything you copy for later use." },
-                    { name: "Sandboxie Plus", type: "optional", link: "https://sandboxie-plus.com/downloads/", description: "Run applications in an isolated sandbox environment to test and contain potential threats." },
-                    { name: "Radmin VPN", type: "optional", link: "https://www.radmin-vpn.com/", description: "Free and easy-to-use VPN software for creating secure virtual LAN networks." },
-                    { name: "Stacher", type: "optional", link: "https://stacher.io/", description: "Download YouTube videos and playlists for offline viewing." }
+                    { name: "Free Download Manager", type: "essential", link: "https://www.freedownloadmanager.org/download.htm", description: "يسرع عمليات التحميل ويدعم التورنت وتحميل الفيديوهات." },
+                    { name: "Microsoft 365 / LibreOffice", type: "optional", link: "https://www.microsoft.com/microsoft-365", description: "حزم إنتاجية للمستندات وجداول البيانات والعروض التقديمية." },
+                    { name: "Discord / Slack / Teams", type: "optional", link: "https://discord.com/download", description: "منصات اتصال للمراسلة والمكالمات الصوتية والمرئية." },
+                    { name: "CrystalDiskInfo + HWMonitor", type: "essential", link: "https://crystalmark.info/en/software/crystaldiskinfo/", description: "أدوات لمراقبة صحة القرص الصلب ودرجات حرارة النظام." },
+                    { name: "VLC Media Player", type: "optional", link: "https://www.videolan.org/vlc/", description: "مشغل وسائط متعدد الاستخدامات يدعم معظم صيغ الصوت والفيديو." },
+                    { name: "Notepad++", type: "optional", link: "https://notepad-plus-plus.org/downloads/", description: "محرر نصوص متقدم مع إبراز بناء الجملة للمبرمجين." },
+                    { name: "CapCut", type: "optional", link: "https://www.capcut.com/download", description: "برنامج تحرير فيديو سهل الاستخدام مع ميزات احترافية." },
+                    { name: "DaVinci Resolve", type: "optional", link: "https://www.blackmagicdesign.com/products/davinciresolve", description: "برنامج تحرير فيديو احترافي وتصحيح ألوان وما بعد إنتاج الصوت." },
+                    { name: "Visual Studio Code", type: "dev", link: "https://code.visualstudio.com/download", description: "محرر أكواد خفيف الوزن ولكنه قوي مع دعم واسع للإضافات." },
+                    { name: "OBS Studio", type: "optional", link: "https://obsproject.com/download", description: "برنامج مفتوح المصدر لتسجيل الفيديو والبث المباشر." }
                 ]
             },
             {
-                title: "Programming & Development",
+                title: "البرمجة والتطوير",
                 icon: "fas fa-laptop-code",
                 items: [
-                    { name: "Git + GitHub Desktop", type: "dev", link: "https://git-scm.com/downloads", description: "Version control system and GUI client for managing code repositories." },
-                    { name: "Node.js + npm", type: "dev", link: "https://nodejs.org/en/download/", description: "JavaScript runtime and package manager for server-side development." },
-                    { name: "Python + pip", type: "dev", link: "https://www.python.org/downloads/", description: "Popular programming language and its package installer." },
-                    { name: "Docker Desktop", type: "dev", link: "https://www.docker.com/products/docker-desktop", description: "Platform for developing, shipping, and running applications in containers." },
-                    { name: "WSL2", type: "dev", link: "https://docs.microsoft.com/en-us/windows/wsl/install", description: "Windows Subsystem for Linux lets you run a Linux environment on Windows." },
-                    { name: "PostgreSQL / MySQL / SQLite", type: "dev", link: "https://www.postgresql.org/download/", description: "Popular database management systems for application development." },
-                    { name: "JetBrains Toolbox", type: "dev", link: "https://www.jetbrains.com/toolbox-app/", description: "Manages installations of JetBrains IDEs like IntelliJ, PyCharm, and WebStorm." },
-                    { name: "Postman / Insomnia", type: "dev", link: "https://www.postman.com/downloads/", description: "API development and testing tools for building and using web services." },
-                    { name: "Sparkle", type: "dev", link: "https://github.com/Parcoil/Sparkle/releases/tag/2.6.0", description: "An open-source software update framework for applications, enabling seamless self-updating capabilities. A PowerShell script has been added to download it." }
+                    { name: "Git + GitHub Desktop", type: "dev", link: "https://git-scm.com/downloads", description: "نظام التحكم في الإصدار وعميل واجهة المستخدم لإدارة مستودعات الكود." },
+                    { name: "Node.js + npm", type: "dev", link: "https://nodejs.org/en/download/", description: "بيئة تشغيل جافاسكريبت ومدير الحزم للتطوير من جانب الخادم." },
+                    { name: "Python + pip", type: "dev", link: "https://www.python.org/downloads/", description: "لغة برمجة شائعة ومدير الحزم الخاص بها." },
+                    { name: "Docker Desktop", type: "dev", link: "https://www.docker.com/products/docker-desktop", description: "منصة لتطوير وشحن وتشغيل التطبيقات في حاويات." },
+                    { name: "WSL2", type: "dev", link: "https://docs.microsoft.com/en-us/windows/wsl/install", description: "نظام فرعي للينكس في ويندوز يتيح لك تشغيل بيئة لينكس على ويندوز." }
                 ]
             },
             {
-                title: "Windows Customization",
+                title: "تخصيص ويندوز",
                 icon: "fas fa-paint-brush",
                 items: [
-                    { name: "Settings → Personalization", type: "essential", link: "ms-settings:personalization", description: "Built-in Windows settings for customizing appearance and themes." },
-                    { name: "TaskbarToDock", type: "optional", link: "https://github.com/d2dyno/TaskbarToDock", description: "Converts the Windows taskbar into a macOS-style dock." },
-                    { name: "TranslucentTB", type: "optional", link: "https://github.com/TranslucentTB/TranslucentTB", description: "Makes the Windows taskbar translucent or completely transparent." },
-                    { name: "Lively Wallpaper / Wallpaper Engine", type: "optional", link: "https://apps.microsoft.com/store/detail/lively-wallpaper/9NTM2QC6QWS7", description: "Applications for setting animated and interactive wallpapers." },
-                    { name: "Rainmeter", type: "optional", link: "https://www.rainmeter.net/", description: "Desktop customization tool that displays customizable skins." },
-                    { name: "TidyTabs", type: "optional", link: "https://www.nurgo-software.com/products/tidytabs", description: "Adds tabbed interface to standard Windows applications." }
+                    { name: "الإعدادات → التخصيص", type: "essential", link: "ms-settings:personalization", description: "إعدادات ويندوز المدمجة لتخصيص المظهر والسمات." },
+                    { name: "TranslucentTB", type: "optional", link: "https://github.com/TranslucentTB/TranslucentTB", description: "يجعل شريط مهام ويندوز شفافًا أو شبه شفاف." },
+                    { name: "Lively Wallpaper", type: "optional", link: "https://apps.microsoft.com/store/detail/lively-wallpaper/9NTM2QC6QWS7", description: "تطبيقات لتعيين خلفيات متحركة وتفاعلية." },
+                    { name: "Rainmeter", type: "optional", link: "https://www.rainmeter.net/", description: "أداة تخصيص سطح المكتب التي تعرض سكين قابلة للتخصيص." }
                 ]
             },
             {
-                title: "Developer Tweaks (Windows)",
-                icon: "fas fa-cogs",
-                items: [
-                    { name: "O&O ShutUp10++", type: "dev", link: "https://www.oo-software.com/en/shutup10", description: "Privacy tool that lets you control which Windows features can access your data." },
-                    { name: "WPD (Windows Privacy Dashboard)", type: "dev", link: "https://wpd.app/", description: "Tool for adjusting privacy settings and disabling telemetry in Windows." },
-                    { name: "SimpleWall", type: "dev", link: "https://www.henrypp.org/product/simplewall", description: "Simple Windows firewall tool with filtering rules for applications." },
-                    { name: "TidyOS", type: "dev", link: "https://github.com/builtbybel/TidyOS", description: "Tool for debloating and optimizing Windows 10 and 11 installations." },
-                    { name: "CTT (Chris Titus Tweaks) and Revo uninstaller pro", type: "dev", link: "https://github.com/ChrisTitusTech/winutil", description: "Scripts and tools for optimizing Windows performance and removing bloatware." },
-                    { name: "Optimizer", type: "dev", link: "https://github.com/hellzerg/optimizer", description: "Portable tool for optimizing Windows by disabling unnecessary features." },
-                    { name: "Windhawk", type: "dev", link: "https://windhawk.net/", description: "Platform for modding and customizing Windows with user-created mods." },
-                    { name: "Twinkle Tray", type: "dev", link: "https://github.com/xanderfrangos/twinkle-tray", description: "Easily manage the brightness of multiple monitors." },
-                    { name: "QuickLook", type: "dev", link: "https://github.com/QL-Win/QuickLook", description: "Bring macOS Quick Look feature to Windows - press spacebar to preview files." },
-                    { name: "EarTrumpet", type: "dev", link: "https://github.com/File-New-Project/EarTrumpet/releases", description: "Per-application volume control for Windows." },
-                    { name: "Startallback", type: "dev", link: "https://www.startallback.com/", description: "Customizes the Windows 11 Start menu and taskbar to be more like Windows 10." },
-                    { name: "UniGetUI (WingetUI)", type: "dev", link: "https://github.com/martinet101/WingetUI", description: "GUI for package managers like Winget and Scoop to easily install applications." },
-                    { name: "Scoop", type: "dev", link: "https://scoop.sh/", description: "Command-line installer for Windows that simplifies software installation." },
-                    { name: "Chocolatey", type: "dev", link: "https://chocolatey.org/install", description: "Package manager for Windows that automates software installations." }
-                ]
-            },
-            {
-                title: "System Utilities",
+                title: "أدوات النظام",
                 icon: "fas fa-toolbox",
                 items: [
-                    { name: "Revo Uninstaller Pro", type: "optional", link: "https://www.revouninstaller.com/products/revo-uninstaller-pro/", description: "Advanced uninstaller that removes leftover files and registry entries." },
-                    { name: "BleachBit", type: "optional", link: "https://www.bleachbit.org/download", description: "System cleaner that frees disk space and protects privacy by deleting unnecessary files." },
-                    { name: "AOMEI Backupper", type: "optional", link: "https://www.aomeitech.com/aomei-backupper.html", description: "Backup and restore software for system, disk, partition, and file backup." },
-                    { name: "Macrium Reflect Free", type: "optional", link: "https://www.macrium.com/reflectfree", description: "Disk imaging and cloning solution for data backup and recovery." },
-                    { name: "Process Hacker", type: "optional", link: "https://processhacker.sourceforge.io/downloads.php", description: "Advanced task manager with detailed process information and system monitoring." },
-                    { name: "Sysinternals Suite", type: "essential", link: "https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite", description: "Collection of advanced system utilities for Windows from Microsoft." },
-                    { name: "HWMonitor", type: "optional", link: "https://www.cpuid.com/softwares/hwmonitor.html", description: "Hardware monitoring program that reads PC system health sensors." },
-                    { name: "Flow Launcher", type: "optional", link: "https://www.flowlauncher.com/", description: "Application launcher for Windows that helps you quickly find and open programs." },
-                    { name: "Listary", type: "optional", link: "https://www.listary.com/download", description: "Search utility that makes finding files and launching applications faster." }
-                ]
-            },
-            {
-                title: "How to Download Official Windows ISO",
-                icon: "fas fa-download",
-                items: [
-                    { name: "Method 1: From Microsoft Website", type: "essential", link: "https://www.microsoft.com/software-download/windows10", description: "Official method to download Windows ISO directly from Microsoft's website." },
-                    { name: "Method 2: From Rufus Directly", type: "essential", link: "https://rufus.ie/en/", description: "Use Rufus tool to download Windows ISO images and create bootable USB drives." }
+                    { name: "Revo Uninstaller Pro", type: "optional", link: "https://www.revouninstaller.com/products/revo-uninstaller-pro/", description: "أداة إلغاء تثبيت متقدمة تزيل الملفات المتبقية وإدخالات السجل." },
+                    { name: "BleachBit", type: "optional", link: "https://www.bleachbit.org/download", description: "منظف النظام الذي يحرر مساحة القرص ويحمي الخصوصية بحذف الملفات غير الضرورية." },
+                    { name: "Sysinternals Suite", type: "essential", link: "https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite", description: "مجموعة من أدوات النظام المتقدمة لويندوز من مايكروسوفت." },
+                    { name: "HWMonitor", type: "optional", link: "https://www.cpuid.com/softwares/hwmonitor.html", description: "برنامج مراقبة الأجهزة الذي يقرأ مستشعرات صحة نظام الكمبيوتر." },
+                    { name: "Everything", type: "optional", link: "https://www.voidtools.com/downloads/", description: "أداة بحث ملفات سريعة للغاية لويندوز التي تفهرس محرك الأقراص بالكامل." }
                 ]
             }
         ];
 
-        // Render content to the page
+        // إنشاء جسيمات عائمة
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // حجم عشوائي
+                const size = Math.random() * 20 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // موقع عشوائي
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // تأخير عشوائي للحركة
+                particle.style.animationDelay = `${Math.random() * 20}s`;
+                
+                // شفافية عشوائية
+                particle.style.opacity = Math.random() * 0.2 + 0.05;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // عرض المحتوى
         function renderContent(filter = 'all', searchTerm = '') {
             const container = document.getElementById('content-container');
             container.innerHTML = '';
 
-            data.forEach(category => {
+            data.forEach((category, index) => {
                 const filteredItems = category.items.filter(item => {
                     const matchesFilter = filter === 'all' || item.type === filter;
-                    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+                    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                                         item.description.toLowerCase().includes(searchTerm.toLowerCase());
                     return matchesFilter && matchesSearch;
                 });
 
                 if (filteredItems.length > 0) {
                     const categoryEl = document.createElement('div');
-                    categoryEl.className = 'category';
-
+                    categoryEl.className = 'category-card fade-in';
+                    
+                    // تأخير متدرج للظهور
+                    categoryEl.style.animationDelay = `${index * 0.1}s`;
+                    
                     let categoryHTML = `
-                        <h2><i class="${category.icon}"></i> ${category.title}</h2>
-                        <ul>
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="${category.icon}"></i>
+                            </div>
+                            <div class="category-title">${category.title}</div>
+                        </div>
+                        <div class="category-items">
                     `;
 
                     filteredItems.forEach(item => {
                         let itemName = item.name;
                         if (searchTerm) {
                             const regex = new RegExp(`(${searchTerm})`, 'gi');
-                            itemName = itemName.replace(regex, '<span class="highlight">$1</span>');
+                            itemName = itemName.replace(regex, '<span class="text-gradient">$1</span>');
                         }
 
                         const optionalClass = item.type === 'optional' ? 'optional' : '';
                         const itemId = item.name.replace(/\s+/g, '-').toLowerCase();
+                        const iconClass = getItemIcon(item.type);
 
                         categoryHTML += `
-                            <li>
-                                <div class="item-content">
-                                    <i class="fas fa-${getItemIcon(item.type)}"></i> 
-                                    <span class="${optionalClass}">${itemName}</span>
-                                    <i class="fas fa-info-circle info-icon" onclick="toggleInfo('${itemId}')"></i>
+                            <div class="app-item">
+                                <div class="app-info">
+                                    <div class="app-icon">
+                                        <i class="fas fa-${iconClass}"></i>
+                                    </div>
+                                    <div>
+                                        <div class="app-name ${optionalClass}">${itemName}</div>
+                                        <i class="fas fa-info-circle info-icon" onclick="toggleInfo('${itemId}')"></i>
+                                    </div>
                                 </div>
-                                ${item.link ? `<a href="${item.link}" target="_blank" class="download-btn"><i class="fas fa-download"></i> Download</a>` : ''}
-                            </li>
-                            <div class="program-info" id="${itemId}">
-                                <p>${item.description}</p>
+                                ${item.link ? `<a href="${item.link}" target="_blank" class="download-btn"><i class="fas fa-download"></i> تحميل</a>` : 
+                                  `<button class="download-btn" style="background: var(--text-light);"><i class="fas fa-cog"></i> إعداد</button>`}
+                            </div>
+                            <div class="app-description" id="${itemId}">
+                                ${item.description}
                             </div>
                         `;
                     });
 
-                    categoryHTML += '</ul>';
+                    categoryHTML += '</div>';
                     categoryEl.innerHTML = categoryHTML;
                     container.appendChild(categoryEl);
                 }
             });
+
+            // تفعيل تأثير الظهور عند التمرير
+            setTimeout(() => {
+                const fadeElements = document.querySelectorAll('.fade-in');
+                fadeElements.forEach(el => {
+                    const elTop = el.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elTop < windowHeight - 100) {
+                        el.classList.add('visible');
+                    }
+                });
+            }, 100);
         }
 
-        // Toggle program info display
+        // تبديل عرض وصف التطبيق
         function toggleInfo(itemId) {
             const infoElement = document.getElementById(itemId);
-            if (infoElement.style.display === 'block') {
-                infoElement.style.display = 'none';
-            } else {
-                // Hide all other info elements
-                document.querySelectorAll('.program-info').forEach(el => {
-                    el.style.display = 'none';
-                });
+            const isVisible = infoElement.style.display === 'block';
+            
+            // إغلاق جميع الوصفات أولاً
+            document.querySelectorAll('.app-description').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // فتح الوصف المطلوب إذا لم يكن مفتوحًا بالفعل
+            if (!isVisible) {
                 infoElement.style.display = 'block';
             }
         }
 
-        // Get appropriate icon based on type
+        // الحصول على الأيقونة المناسبة حسب النوع
         function getItemIcon(type) {
             switch (type) {
                 case 'essential': return 'star';
-                case 'optional': return 'circle-notch';
+                case 'optional': return 'circle';
                 case 'dev': return 'code';
                 default: return 'check';
             }
         }
 
-        // Setup dark mode toggle
+        // إعداد وضع الظلام
         function setupDarkMode() {
             const themeToggle = document.getElementById('theme-toggle');
             const icon = themeToggle.querySelector('i');
             const modeIndicator = document.getElementById('mode-indicator');
             const modeIcon = modeIndicator.querySelector('i');
-            const techImage = document.getElementById('tech-image');
 
-            // Check if user has a dark mode preference saved
+            // التحقق من تفضيلات المستخدم
             const savedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-            // Set initial theme
+            // تعيين الوضع الأولي
             if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
                 document.body.classList.remove('dark-mode');
                 document.body.classList.add('light-mode');
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
-                techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+                modeIcon.classList.remove('fa-sun');
+                modeIcon.classList.add('fa-moon');
+                modeIndicator.innerHTML = '<i class="fas fa-moon"></i> الوضع الليلي';
             } else {
                 document.body.classList.remove('light-mode');
                 document.body.classList.add('dark-mode');
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
-                techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23121826' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+                modeIcon.classList.remove('fa-moon');
+                modeIcon.classList.add('fa-sun');
+                modeIndicator.innerHTML = '<i class="fas fa-sun"></i> الوضع النهاري';
             }
 
+            // تبديل الوضع عند النقر
             themeToggle.addEventListener('click', () => {
                 if (document.body.classList.contains('dark-mode')) {
                     document.body.classList.remove('dark-mode');
@@ -740,31 +1071,29 @@
                     localStorage.setItem('theme', 'light');
                     icon.classList.remove('fa-sun');
                     icon.classList.add('fa-moon');
-                    modeIcon.classList.remove('fa-moon');
-                    modeIcon.classList.add('fa-sun');
-                    modeIndicator.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-                    techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23f5f6fa' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+                    modeIcon.classList.remove('fa-sun');
+                    modeIcon.classList.add('fa-moon');
+                    modeIndicator.innerHTML = '<i class="fas fa-moon"></i> الوضع الليلي';
                 } else {
                     document.body.classList.remove('light-mode');
                     document.body.classList.add('dark-mode');
                     localStorage.setItem('theme', 'dark');
                     icon.classList.remove('fa-moon');
                     icon.classList.add('fa-sun');
-                    modeIcon.classList.remove('fa-sun');
-                    modeIcon.classList.add('fa-moon');
-                    modeIndicator.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
-                    techImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23121826' width='800' height='400'/%3E%3Cg fill='%231A2A80' opacity='0.6'%3E%3Ccircle cx='400' cy='200' r='100'/%3E%3Ccircle cx='650' cy='110' r='30'/%3E%3Ccircle cx='200' cy='300' r='20'/%3E%3Ccircle cx='150' cy='100' r='40'/%3E%3Ccircle cx='700' cy='300' r='50'/%3E%3C/g%3E%3Cpath d='M200,200 Q400,50 600,200' stroke='%23B2B0E8' stroke-width='10' fill='none'/%3E%3Cpath d='M250,300 Q400,150 550,300' stroke='%237A85C1' stroke-width='8' fill='none'/%3E%3C/svg%3E";
+                    modeIcon.classList.remove('fa-moon');
+                    modeIcon.classList.add('fa-sun');
+                    modeIndicator.innerHTML = '<i class="fas fa-sun"></i> الوضع النهاري';
                 }
 
-                // Show mode indicator for 3 seconds
-                modeIndicator.style.display = 'flex';
+                // عرض مؤشر الوضع لمدة 3 ثوانٍ
+                modeIndicator.classList.add('show');
                 setTimeout(() => {
-                    modeIndicator.style.display = 'none';
+                    modeIndicator.classList.remove('show');
                 }, 3000);
             });
         }
 
-        // Setup filtering and search
+        // إعداد عوامل التصفية والبحث
         function setupFilters() {
             const filterButtons = document.querySelectorAll('.filter-btn');
             const searchInput = document.getElementById('search-input');
@@ -785,16 +1114,65 @@
             });
         }
 
-        // Initialize the page
+        // شريط التقدم
+        function setupProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            
+            window.addEventListener('scroll', () => {
+                const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (window.scrollY / windowHeight) * 100;
+                progressBar.style.width = `${scrolled}%`;
+            });
+        }
+
+        // تأثير الظهور عند التمرير
+        function setupScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
             renderContent();
             setupDarkMode();
             setupFilters();
-
-            // Hide mode indicator after 3 seconds of loading
+            setupProgressBar();
+            setupScrollAnimations();
+            
+            // تفعيل تأثيرات التمرير عند التحميل
+            window.dispatchEvent(new Event('scroll'));
+            
+            // إخفاء مؤشر الوضع بعد 3 ثوانٍ من التحميل
             setTimeout(() => {
-                document.getElementById('mode-indicator').style.display = 'none';
+                document.getElementById('mode-indicator').classList.remove('show');
             }, 3000);
+        });
+
+        // إضافة تأثير للتمرير على شريط التنقل
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+                navbar.style.height = '60px';
+            } else {
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+                navbar.style.height = 'var(--header-height)';
+            }
         });
     </script>
 </body>
