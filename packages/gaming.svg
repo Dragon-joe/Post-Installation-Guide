@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="gaming">
-<defs><linearGradient id="g" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#EC4899"/></linearGradient></defs>
-<rect x="2" y="2" width="60" height="60" rx="18" fill="url(#g)" opacity=".12"/>
-<g fill="none" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 25c-5 1-8 7-9 15-.6 5 4 8 8 4l5-5h16l5 5c4 4 8 .8 8-4-1-8-4-14-9-15-6-1-18-1-24 0Z"/><path d="M22 30v9M17.5 34.5h9"/><circle cx="41" cy="32" r="2" fill="currentColor" stroke="none"/><circle cx="46" cy="37" r="2" fill="currentColor" stroke="none"/></g>
-</svg>
