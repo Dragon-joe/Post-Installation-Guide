@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="دليل عربي تفاعلي لاختيار برامج ويندوز حسب الاستخدام، متابعة التثبيت، المقارنة، وحفظ المفضلة.">
+  <meta name="theme-color" content="#0b57d0">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:title" content="دليل ما بعد تثبيت ويندوز">
+  <meta property="og:description" content="دليل عربي تفاعلي لاختيار برامج ويندوز حسب الاستخدام، متابعة التثبيت، المقارنة، وحفظ المفضلة.">
+  <meta property="og:image" content="https://your-domain.com/assets/og-image.png">
+  <meta property="og:site_name" content="دليل ما بعد التثبيت">
+  <meta name="twitter:image" content="https://your-domain.com/assets/og-image.png">
+  <meta property="og:url" content="https://your-domain.com/index.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://your-domain.com/index.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="favicon.ico">
+<link rel="stylesheet" href="assets/styles.css">
+  <title>دليل ما بعد تثبيت ويندوز</title>
+  <script>try{const r=document.documentElement;const l=localStorage.getItem('post-guide-lang')||'ar';const theme=localStorage.getItem('post-guide-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');r.lang=l==='en'?'en':'ar';r.dir=r.lang==='ar'?'rtl':'ltr';r.dataset.lang=r.lang;r.dataset.theme=theme}catch(e){}</script>
+</head>
+<body data-page="home">
+<div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+<a class="skip-link" href="#main-content">تجاوز إلى المحتوى</a>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html" aria-label="دليل ما بعد التثبيت - الرئيسية">
+      <img class="brand-logo" src="assets/logo.svg" alt="" width="44" height="44">
+      <span class="brand-text">دليل ما بعد التثبيت<small>جهّز ويندوز بثقة</small></span>
+    </a>
+    <nav class="nav-links" aria-label="التنقل الرئيسي">
+      <a class="nav-link" data-nav="home" href="index.html">الرئيسية</a>
+      <a class="nav-link" data-nav="steps" href="steps.html">خطوات التجهيز</a>
+      <a class="nav-link" data-nav="compare" href="compare.html">المقارنة</a>
+      <a class="nav-link" data-nav="favorites" href="favorites.html">المفضلة <span class="nav-count" data-favorite-count>0</span></a>
+      <a class="nav-link" data-nav="videos" href="videos.html">الفيديوهات</a>
+      <a class="nav-link" data-nav="about" href="about.html">حول</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn lang-btn" type="button" data-lang-toggle aria-label="Switch language">EN</button>
+<button class="icon-btn" type="button" data-theme-toggle aria-label="تفعيل الوضع الليلي">◐</button>
+      <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-label="فتح القائمة" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+<main id="main-content">
+<section class="hero hero-home"><div class="container hero-grid">
+  <div><span class="eyebrow">دليل عملي، لا قائمة روابط فقط</span><h1>جهّز ويندوز خطوة بخطوة، واحفظ تقدمك تلقائيًا.</h1>
+  <p class="hero-copy">اختر نوع استخدامك، علّم البرامج التي ثبّتها، وانسخ أوامر WinGet للبرامج المدعومة. بياناتك تبقى داخل متصفحك ولا تُرسل إلى خادم.</p>
+  <div class="hero-actions"><a class="btn btn-primary" href="#packages">اختر باقتك</a><a class="btn btn-ghost" href="steps.html">ابدأ بالخطوات الست</a></div></div>
+  <aside class="progress-card" aria-label="تقدم تجهيز الجهاز">
+    <div class="progress-head"><span>تقدم التجهيز</span><strong data-progress-percent>0%</strong></div>
+    <div class="progress-track"><span data-progress-bar></span></div>
+    <p data-progress-text>لم تحدد أي برنامج كمثبت بعد.</p>
+    <div class="mini-stats"><span><strong data-installed-count>0</strong> مثبت</span><span><strong data-package-total>0</strong> داخل الباقة</span></div>
+  </aside>
+</div></section>
+<section class="section-sm" id="packages"><div class="container">
+  <div class="section-heading"><div><span class="kicker">باقات جاهزة</span><h2>اختر استخدامك الأساسي</h2><p>الباقة لا تثبّت شيئًا تلقائيًا؛ هي فقط تعرض البرامج الأكثر صلة وتحتسب تقدمك بناءً عليها.</p></div></div>
+  <div class="package-grid" id="package-selector"></div>
+</div></section>
+<section class="section steps-preview"><div class="container">
+  <div class="section-heading"><div><span class="kicker">الترتيب الصحيح</span><h2>قبل تثبيت البرامج</h2></div><a class="text-link" href="steps.html">عرض كل الخطوات ←</a></div>
+  <div class="step-strip" id="steps-preview"></div>
+</div></section>
+<section class="section" id="programs"><div class="container">
+  <div class="section-heading"><div><span class="kicker">البرامج والأدوات</span><h2>اختيارات واضحة بدل الحيرة</h2><p>كل وصف مترجم، وكل عنصر يوضح السعر والترخيص والاختيار الأنسب والتحذيرات المهمة.</p></div></div>
+  <div class="controls" id="sticky-controls">
+    <label class="search"><span aria-hidden="true">⌕</span><input id="app-search" type="search" placeholder="ابحث باسم البرنامج أو وظيفته..." autocomplete="off"></label>
+    <select id="type-filter" aria-label="نوع البرنامج"><option value="all">كل الأنواع</option><option value="essential">أساسي</option><option value="optional">اختياري</option><option value="dev">متقدم / مطور</option></select>
+    <select id="price-filter" aria-label="السعر"><option value="all">كل الأسعار</option><option value="free">مجاني</option><option value="opensource">مفتوح المصدر</option><option value="paid">مدفوع</option></select>
+    <select id="sort-filter" aria-label="الترتيب"><option value="priority">الأكثر أهمية</option><option value="name">الاسم</option><option value="free">المجاني أولًا</option><option value="opensource">المفتوح المصدر أولًا</option><option value="newest">الأحدث إضافة</option></select>
+    <button class="btn btn-muted" id="clear-filters" type="button">مسح البحث والفلاتر</button>
+  </div>
+  <div class="results-line"><strong id="results-count">—</strong><span id="active-package-label"></span></div>
+  <div class="app-grid" id="app-grid" aria-live="polite"></div>
+</div></section>
+</main><button class="back-top" type="button" data-back-top aria-label="العودة إلى أعلى الصفحة">↑</button>
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.svg" alt="" width="40" height="40"><span class="brand-text">دليل ما بعد التثبيت</span></a>
+      <p class="footer-copy">دليل تفاعلي لاختيار البرامج وتجهيز ويندوز دون تثبيت أشياء لا تحتاجها.</p>
+    </div>
+    <div class="footer-links">
+      <a href="privacy.html">الخصوصية</a><a href="report.html">الإبلاغ عن رابط</a><a href="sitemap.html">خريطة الموقع</a><span>© <span data-year></span></span>
+    </div>
+  </div>
+</footer>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body></html>
